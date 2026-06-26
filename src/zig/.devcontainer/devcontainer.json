@@ -1,0 +1,17 @@
+{
+    "name": "Zig",
+    "image": "ghcr.io/bare-devcontainer/zig:${templateOption:imageVariant}",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ziglang.vscode-zig"
+            ],
+            "settings": {
+                "[zig]": {
+                    "editor.formatOnSave": true,
+                    "editor.defaultFormatter": "ziglang.vscode-zig"
+                }
+            }
+        }
+    }
+}

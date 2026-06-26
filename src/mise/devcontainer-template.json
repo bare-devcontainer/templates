@@ -1,0 +1,21 @@
+{
+    "id": "mise",
+    "version": "1.0.0",
+    "name": "mise (Bare Dev Container)",
+    "description": "A development environment with mise (polyglot runtime manager) on Debian, for managing multiple language runtimes per project.",
+    "publisher": "Bare Dev Container Maintainers",
+    "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/mise",
+    "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+    "options": {
+        "imageVariant": {
+            "type": "string",
+            "description": "Debian version",
+            "proposals": [
+                "trixie",
+                "bookworm"
+            ],
+            "default": "trixie"
+        }
+    },
+    "platforms": ["linux"]
+}

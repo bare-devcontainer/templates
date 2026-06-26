@@ -1,0 +1,17 @@
+{
+    "name": "Rust",
+    "image": "ghcr.io/bare-devcontainer/rust:${templateOption:imageVariant}",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer"
+            ],
+            "settings": {
+                "[rust]": {
+                    "editor.formatOnSave": true,
+                    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+                }
+            }
+        }
+    }
+}

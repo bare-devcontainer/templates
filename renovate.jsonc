@@ -1,0 +1,33 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:best-practices"
+    ],
+    "minimumReleaseAge": "14 days",
+    "customManagers": [
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "**/devcontainer.json"
+            ],
+            "matchStrings": [
+                // JSON string following a `// renovate:` comment in the form `"tag@sha256:digest"`
+                // e.g. "ubuntu:22.04@sha256:abc123..."
+                "// renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))? depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?[\\s\\S]*?\"(?<currentValue>[^\"@]+)@(?<currentDigest>sha256:[a-f0-9]+)\"",
+                // JSON string following a `// renovate:` comment in the form `"name@version"` (no sha256 digest)
+                // e.g. "anthropic.claude-code@2.1.168"
+                "// renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))? depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?[\\s\\S]*?\"[^\"@]+@(?<currentValue>[^\":]+)\""
+            ],
+            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+        }
+    ],
+    "packageRules": [
+        {
+            "description": "Disable minimumReleaseAge for Docker images since Docker registries do not provide release timestamps.",
+            "matchDatasources": [
+                "docker"
+            ],
+            "minimumReleaseAge": null
+        }
+    ]
+}

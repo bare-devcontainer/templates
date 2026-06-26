@@ -1,0 +1,4 @@
+{
+    "name": "Debian",
+    "image": "ghcr.io/bare-devcontainer/debian:${templateOption:imageVariant}"
+}
