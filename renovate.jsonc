@@ -8,6 +8,17 @@
         {
             "customType": "regex",
             "managerFilePatterns": [
+                ".github/workflows/**"
+            ],
+            "matchStrings": [
+                // YAML value following a `# renovate:` comment in the form `key: "version"`
+                "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+\\S+: \"(?<currentValue>[^\"]+)\""
+            ],
+            "versioningTemplate": "semver"
+        },
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
                 "**/devcontainer.json"
             ],
             "matchStrings": [
