@@ -1,4 +1,4 @@
-name: "Release Dev Container Templates & Generate Documentation"
+name: "Release Dev Container Templates"
 
 permissions: {}
 
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  release:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -28,7 +28,7 @@ jobs:
           base-path-to-templates: "./src"
           generate-docs: "true"
           # renovate: datasource=npm depName=@devcontainers/cli
-          devcontainer-cli-version: "0.88.0"
+          devcontainer-cli-version: "0.87.0"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
