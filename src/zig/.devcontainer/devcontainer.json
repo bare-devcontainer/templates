@@ -3,6 +3,14 @@
   "image": "ghcr.io/bare-devcontainer/zig:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
+  "mounts": [
+    // Persist the Zig global cache across rebuilds to avoid re-downloading packages and recompiling dependencies.
+    {
+      "source": "${devcontainerId}-zig-global-cache",
+      "target": "/home/dev/.cache/zig",
+      "type": "volume"
+    }
+  ],
   // Uncomment the following options to enable the debugger.
   // "capAdd": ["SYS_PTRACE"],
   // "securityOpt": ["seccomp=unconfined"],
