@@ -1,70 +1,70 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:best-practices",
-        ":semanticCommits",
-        ":semanticCommitTypeAll(chore)"
-    ],
-    "minimumReleaseAge": "14 days",
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "minimumReleaseAge": "14 days",
+  "labels": [
+    "deps"
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
     "labels": [
-        "deps"
+      "security"
     ],
-    "vulnerabilityAlerts": {
-        "enabled": true,
-        "labels": [
-            "security"
-        ],
-        "minimumReleaseAge": null
+    "minimumReleaseAge": null
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        ".github/workflows/**"
+      ],
+      "matchStrings": [
+        // YAML value following a `# renovate:` comment in the form `key: "version"`
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+\\S+: \"(?<currentValue>[^\"]+)\""
+      ],
+      "versioningTemplate": "semver"
     },
-    "customManagers": [
-        {
-            "customType": "regex",
-            "managerFilePatterns": [
-                ".github/workflows/**"
-            ],
-            "matchStrings": [
-                // YAML value following a `# renovate:` comment in the form `key: "version"`
-                "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+\\S+: \"(?<currentValue>[^\"]+)\""
-            ],
-            "versioningTemplate": "semver"
-        },
-        {
-            "customType": "regex",
-            "managerFilePatterns": [
-                "**/devcontainer.json"
-            ],
-            "matchStrings": [
-                // JSON string following a `// renovate:` comment in the form `"tag@sha256:digest"`
-                // e.g. "ubuntu:22.04@sha256:abc123..."
-                "// renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))? depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?[\\s\\S]*?\"(?<currentValue>[^\"@]+)@(?<currentDigest>sha256:[a-f0-9]+)\"",
-                // JSON string following a `// renovate:` comment in the form `"name@version"` (no sha256 digest)
-                // e.g. "anthropic.claude-code@2.1.168"
-                "// renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))? depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?[\\s\\S]*?\"[^\"@]+@(?<currentValue>[^\":]+)\""
-            ],
-            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-        }
-    ],
-    "packageRules": [
-        {
-            "description": "Disable minimumReleaseAge for Docker images since Docker registries do not provide release timestamps.",
-            "matchDatasources": [
-                "docker"
-            ],
-            "minimumReleaseAge": null
-        },
-        {
-            "groupName": "Dev Container",
-            "matchFileNames": [
-                ".devcontainer/**/*"
-            ],
-            "semanticCommitType": "chore"
-        },
-        {
-            "groupName": "GitHub Actions",
-            "matchFileNames": [
-                ".github/workflows/*.yml"
-            ],
-            "semanticCommitType": "ci"
-        }
-    ]
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "**/devcontainer.json"
+      ],
+      "matchStrings": [
+        // JSON string following a `// renovate:` comment in the form `"tag@sha256:digest"`
+        // e.g. "ubuntu:22.04@sha256:abc123..."
+        "// renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))? depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?[\\s\\S]*?\"(?<currentValue>[^\"@]+)@(?<currentDigest>sha256:[a-f0-9]+)\"",
+        // JSON string following a `// renovate:` comment in the form `"name@version"` (no sha256 digest)
+        // e.g. "anthropic.claude-code@2.1.168"
+        "// renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))? depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?[\\s\\S]*?\"[^\"@]+@(?<currentValue>[^\":]+)\""
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Disable minimumReleaseAge for Docker images since Docker registries do not provide release timestamps.",
+      "matchDatasources": [
+        "docker"
+      ],
+      "minimumReleaseAge": null
+    },
+    {
+      "groupName": "Dev Container",
+      "matchFileNames": [
+        ".devcontainer/**/*"
+      ],
+      "semanticCommitType": "chore"
+    },
+    {
+      "groupName": "GitHub Actions",
+      "matchFileNames": [
+        ".github/workflows/*.yml"
+      ],
+      "semanticCommitType": "ci"
+    }
+  ]
 }

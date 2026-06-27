@@ -1,4 +1,6 @@
 {
-    "name": "mise",
-    "image": "ghcr.io/bare-devcontainer/mise:${templateOption:imageVariant}"
+  "name": "mise",
+  "image": "ghcr.io/bare-devcontainer/mise:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "init": true
 }

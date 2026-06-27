@@ -1,17 +1,22 @@
 {
-    "name": "Rust",
-    "image": "ghcr.io/bare-devcontainer/rust:${templateOption:imageVariant}",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "rust-lang.rust-analyzer"
-            ],
-            "settings": {
-                "[rust]": {
-                    "editor.formatOnSave": true,
-                    "editor.defaultFormatter": "rust-lang.rust-analyzer"
-                }
-            }
+  "name": "Rust",
+  "image": "ghcr.io/bare-devcontainer/rust:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "init": true,
+  // Uncomment the following options to enable the debugger.
+  // "capAdd": ["SYS_PTRACE"],
+  // "securityOpt": ["seccomp=unconfined"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer"
+      ],
+      "settings": {
+        "[rust]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "rust-lang.rust-analyzer"
         }
+      }
     }
+  }
 }

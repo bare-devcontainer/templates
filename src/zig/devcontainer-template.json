@@ -1,23 +1,25 @@
 {
-    "id": "zig",
-    "version": "1.0.0",
-    "name": "Zig (Bare Dev Container)",
-    "description": "A Zig development environment based on the bare-devcontainer Zig image.",
-    "publisher": "Bare Dev Container Maintainers",
-    "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/zig",
-    "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
-    "options": {
-        "imageVariant": {
-            "type": "string",
-            "description": "Zig version and Debian version",
-            "proposals": [
-                "0.16-trixie",
-                "0.16-bookworm",
-                "0.15-trixie",
-                "0.15-bookworm"
-            ],
-            "default": "0.16-trixie"
-        }
-    },
-    "platforms": ["linux"]
+  "id": "zig",
+  "version": "1.0.0",
+  "name": "Zig (Bare Dev Container)",
+  "description": "A Zig development environment based on the bare-devcontainer Zig image.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/zig",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Zig version and Debian version",
+      "proposals": [
+        "0.16-trixie",
+        "0.16-bookworm",
+        "0.15-trixie",
+        "0.15-bookworm"
+      ],
+      "default": "0.16-trixie"
+    }
+  },
+  "platforms": [
+    "linux"
+  ]
 }
