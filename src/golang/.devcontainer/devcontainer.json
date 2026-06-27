@@ -3,6 +3,20 @@
   "image": "ghcr.io/bare-devcontainer/golang:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
+  "mounts": [
+    // Persist the Go module cache (GOMODCACHE) across rebuilds to avoid re-downloading modules.
+    {
+      "source": "${devcontainerId}-golang-pkg-mod",
+      "target": "/home/dev/go/pkg/mod",
+      "type": "volume"
+    },
+    // Persist the Go build cache (GOCACHE) across rebuilds to speed up incremental builds.
+    {
+      "source": "${devcontainerId}-golang-build-cache",
+      "target": "/home/dev/.cache/go-build",
+      "type": "volume"
+    }
+  ],
   // Uncomment the following options to enable the debugger.
   // "capAdd": ["SYS_PTRACE"],
   // "securityOpt": ["seccomp=unconfined"],

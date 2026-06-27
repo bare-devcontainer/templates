@@ -3,6 +3,21 @@
   "image": "ghcr.io/bare-devcontainer/rust:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
+  "mounts": [
+    // Persist the Cargo registry cache across rebuilds to avoid re-downloading crates.
+    // Only registry/ and git/ are mounted; ~/.cargo/bin is intentionally left in the image layer.
+    {
+      "source": "${devcontainerId}-rust-cargo-registry",
+      "target": "/home/dev/.cargo/registry",
+      "type": "volume"
+    },
+    // Persist Cargo's cache of git-sourced dependencies across rebuilds.
+    {
+      "source": "${devcontainerId}-rust-cargo-git",
+      "target": "/home/dev/.cargo/git",
+      "type": "volume"
+    }
+  ],
   // Uncomment the following options to enable the debugger.
   // "capAdd": ["SYS_PTRACE"],
   // "securityOpt": ["seccomp=unconfined"],
