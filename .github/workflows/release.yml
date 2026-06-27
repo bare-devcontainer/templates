@@ -76,8 +76,10 @@ jobs:
             gh api "repos/${OWNER}/${REPO}/contents/${file}" "${args[@]}"
           done <<< "$changed"
 
+          templates=$(echo "$changed" | sed 's|src/\([^/]*\)/README\.md|\1|' | sort -u | sed 's/^/- /')
+
           gh pr create \
             --title "${MESSAGE}" \
-            --body "${MESSAGE}" \
+            --body "$(printf '## Updated Templates\n\n%s' "${templates}")" \
             --head "${BRANCH}" \
             --base main
