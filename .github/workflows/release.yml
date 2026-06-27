@@ -5,6 +5,7 @@ permissions: {}
 on:
   pull_request:
     paths:
+      - 'src/**/*.json'
       - '.github/workflows/release.yml'
   workflow_dispatch:
 
