@@ -20,9 +20,22 @@
         "ziglang.vscode-zig"
       ],
       "settings": {
+        "zig.path": "/usr/local/zig/zig",
+        "zig.zls.path": "/usr/local/bin/zls",
+        "zig.zls.enabled": "on",
         "[zig]": {
-          "editor.formatOnSave": true,
-          "editor.defaultFormatter": "ziglang.vscode-zig"
+          "editor.suggest.insertMode": "replace",
+          "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+          }
+        },
+        "editor.semanticTokenColorCustomizations": {
+          "rules": {
+            "*.deprecated": {
+              "strikethrough": true
+            }
+          }
         }
       }
     }
