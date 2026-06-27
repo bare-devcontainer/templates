@@ -1,19 +1,24 @@
 {
-    "name": "Go",
-    "image": "ghcr.io/bare-devcontainer/golang:${templateOption:imageVariant}",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "golang.go"
-            ],
-            "settings": {
-                "go.toolsManagement.checkForUpdates": "local",
-                "go.useLanguageServer": true,
-                "[go]": {
-                    "editor.formatOnSave": true,
-                    "editor.defaultFormatter": "golang.go"
-                }
-            }
+  "name": "Go",
+  "image": "ghcr.io/bare-devcontainer/golang:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "init": true,
+  // Uncomment the following options to enable the debugger.
+  // "capAdd": ["SYS_PTRACE"],
+  // "securityOpt": ["seccomp=unconfined"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go"
+      ],
+      "settings": {
+        "go.toolsManagement.checkForUpdates": "local",
+        "go.useLanguageServer": true,
+        "[go]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "golang.go"
         }
+      }
     }
+  }
 }

@@ -1,23 +1,25 @@
 {
-    "id": "golang",
-    "version": "1.0.0",
-    "name": "Go (Bare Dev Container)",
-    "description": "A Go development environment based on the bare-devcontainer Go image.",
-    "publisher": "Bare Dev Container Maintainers",
-    "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/golang",
-    "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
-    "options": {
-        "imageVariant": {
-            "type": "string",
-            "description": "Go version and Debian version",
-            "proposals": [
-                "1.26-trixie",
-                "1.26-bookworm",
-                "1.25-trixie",
-                "1.25-bookworm"
-            ],
-            "default": "1.26-trixie"
-        }
-    },
-    "platforms": ["linux"]
+  "id": "golang",
+  "version": "1.0.0",
+  "name": "Go (Bare Dev Container)",
+  "description": "A Go development environment based on the bare-devcontainer Go image.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/golang",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Go version and Debian version",
+      "proposals": [
+        "1.26-trixie",
+        "1.26-bookworm",
+        "1.25-trixie",
+        "1.25-bookworm"
+      ],
+      "default": "1.26-trixie"
+    }
+  },
+  "platforms": [
+    "linux"
+  ]
 }
