@@ -26,11 +26,17 @@
         "golang.go"
       ],
       "settings": {
+        "go.toolsManagement.autoUpdate": false,
         "go.toolsManagement.checkForUpdates": "local",
-        "go.useLanguageServer": true,
         "[go]": {
+          "editor.defaultFormatter": "golang.go",
           "editor.formatOnSave": true,
-          "editor.defaultFormatter": "golang.go"
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "gopls": {
+          "ui.semanticTokens": true
         }
       }
     }
