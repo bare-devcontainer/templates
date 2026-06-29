@@ -1,6 +1,6 @@
 {
   "id": "mise",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "mise (Bare Dev Container)",
   "description": "A development environment with mise (polyglot runtime manager) on Debian, for managing multiple language runtimes per project.",
   "publisher": "Bare Dev Container Maintainers",
