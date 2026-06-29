@@ -1,6 +1,6 @@
 {
   "id": "debian",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Debian (Bare Dev Container)",
   "description": "A minimal Debian development environment based on the bare-devcontainer Debian image.",
   "publisher": "Bare Dev Container Maintainers",
