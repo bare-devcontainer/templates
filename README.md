@@ -1,8 +1,22 @@
-# Bare Dev Container Images
+# Bare Dev Container Templates
 
-Minimal, secure, and bloat-free Dev Container templates for various technology stacks. 
+Minimal, secure, and bloat-free Dev Container templates for various technology stacks.
 
-It uses [Bare Dev Container Images](https://github.com/bare-devcontainer/images) as the base image for each template. See the [Bare Dev Container Images] repository for more information on the design and goals of these images.
+Each template is built on top of [Bare Dev Container Images] — minimal base images with a reduced attack surface that receive regular security updates. See the [Bare Dev Container Images] repository for details on the design goals and security verification.
+
+## Getting Started
+
+### VS Code
+
+Open the Command Palette (<kbd>F1</kbd>) and run **Dev Containers: Add Dev Container Configuration Files...**. Choose **Show All Definitions...**, then search for `Bare Dev Container` to browse the available templates.
+
+### devcontainer CLI
+
+```sh
+devcontainer templates apply --template-id ghcr.io/bare-devcontainer/templates/<template-name>
+```
+
+Replace `<template-name>` with one of the names from the [Templates](#templates) section below.
 
 ## Templates
 
