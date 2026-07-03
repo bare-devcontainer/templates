@@ -1,10 +1,6 @@
 {
   "name": "Debian",
   "image": "ghcr.io/bare-devcontainer/debian:${templateOption:imageVariant}",
-  "runArgs": [
-    // Always pull the latest image to receive security updates regularly.
-    "--pull=always"
-  ],
   "remoteUser": "dev",
   "init": true
 }

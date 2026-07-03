@@ -1,10 +1,6 @@
 {
   "name": "Rust",
   "image": "ghcr.io/bare-devcontainer/rust:${templateOption:imageVariant}",
-  "runArgs": [
-    // Always pull the latest image to receive security updates regularly.
-    "--pull=always"
-  ],
   "remoteUser": "dev",
   "init": true,
   "mounts": [

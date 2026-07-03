@@ -11,8 +11,7 @@
       "type": "string",
       "description": "Debian version",
       "proposals": [
-        "trixie",
-        "bookworm"
+        "trixie"
       ],
       "default": "trixie"
     }

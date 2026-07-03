@@ -1,10 +1,6 @@
 {
   "name": "Go",
   "image": "ghcr.io/bare-devcontainer/golang:${templateOption:imageVariant}",
-  "runArgs": [
-    // Always pull the latest image to receive security updates regularly.
-    "--pull=always"
-  ],
   "remoteUser": "dev",
   "init": true,
   "mounts": [
