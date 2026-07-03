@@ -1,11 +1,6 @@
 {
   "name": "mise",
   "image": "ghcr.io/bare-devcontainer/mise:${templateOption:imageVariant}",
-  "runArgs": [
-    // Always pull the latest image to receive security updates regularly.
-    "--pull=always"
-  ],
   "remoteUser": "dev",
-  "updateRemoteUserUID": false,
   "init": true
 }

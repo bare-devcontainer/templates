@@ -1,12 +1,7 @@
 {
   "name": "Zig",
   "image": "ghcr.io/bare-devcontainer/zig:${templateOption:imageVariant}",
-  "runArgs": [
-    // Always pull the latest image to receive security updates regularly.
-    "--pull=always"
-  ],
   "remoteUser": "dev",
-  "updateRemoteUserUID": false,
   "init": true,
   "mounts": [
     // Persist the Zig global cache across rebuilds to avoid re-downloading packages and recompiling dependencies.
