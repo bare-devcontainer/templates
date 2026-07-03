@@ -16,17 +16,25 @@ jobs:
     permissions:
       contents: read
     outputs:
-      templates: ${{ steps.list.outputs.templates }}
+      matrix: ${{ steps.list.outputs.matrix }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
 
-      - name: List templates
+      - name: List templates and imageVariant combinations
         id: list
         run: |
-          templates=$(find src -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort | jq -R . | jq -sc .)
-          echo "templates=${templates}" >> "$GITHUB_OUTPUT"
+          matrix=$(
+            find src -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort | while read -r template; do
+              jq -c --arg t "$template" '
+                (.options.imageVariant.proposals // [.options.imageVariant.default]) |
+                map({template: $t, imageVariant: .}) |
+                .[]
+              ' "src/${template}/devcontainer-template.json"
+            done | jq -sc .
+          )
+          echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
 
   verify:
     needs: discover
@@ -37,7 +45,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        template: ${{ fromJson(needs.discover.outputs.templates) }}
+        include: ${{ fromJson(needs.discover.outputs.matrix) }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -45,14 +53,15 @@ jobs:
 
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: 22
+          # renovate: datasource=node depName=node
+          node-version: "26.4.0"
 
       - name: Install devcontainer CLI
         run: |
           # renovate: datasource=npm depName=@devcontainers/cli
           npm install -g @devcontainers/cli@0.87.0
 
-      - name: Apply default template options
+      - name: Apply template options
         id: apply
         run: |
           set -e
@@ -60,15 +69,8 @@ jobs:
           cp -R "src/${{ matrix.template }}/." "${workdir}"
 
           cd "${workdir}"
-          for option in $(jq -r '.options // {} | keys[]' devcontainer-template.json); do
-            default=$(jq -r ".options.${option}.default" devcontainer-template.json)
-            if [ -z "${default}" ] || [ "${default}" = "null" ]; then
-              echo "Template '${{ matrix.template }}' is missing a default value for option '${option}'"
-              exit 1
-            fi
-            escaped=$(printf '%s' "${default}" | sed -e 's/[\/&]/\\&/g')
-            find . -type f -exec sed -i "s/\${templateOption:${option}}/${escaped}/g" {} +
-          done
+          escaped=$(printf '%s' "${{ matrix.imageVariant }}" | sed -e 's/[\/&]/\\&/g')
+          find . -type f -exec sed -i "s/\${templateOption:imageVariant}/${escaped}/g" {} +
 
           echo "workdir=${workdir}" >> "$GITHUB_OUTPUT"
 
