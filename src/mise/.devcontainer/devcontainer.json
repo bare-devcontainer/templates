@@ -6,5 +6,6 @@
     "--pull=always"
   ],
   "remoteUser": "dev",
+  "updateRemoteUserUID": false,
   "init": true
 }

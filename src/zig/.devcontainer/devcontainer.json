@@ -6,6 +6,7 @@
     "--pull=always"
   ],
   "remoteUser": "dev",
+  "updateRemoteUserUID": false,
   "init": true,
   "mounts": [
     // Persist the Zig global cache across rebuilds to avoid re-downloading packages and recompiling dependencies.
