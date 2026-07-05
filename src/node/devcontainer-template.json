@@ -1,0 +1,25 @@
+{
+  "id": "node",
+  "version": "1.0.0",
+  "name": "Node.js (Bare Dev Container)",
+  "description": "A Node.js development environment based on the bare-devcontainer Node.js image.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/node",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Node.js version and Debian version",
+      "proposals": [
+        "26-trixie",
+        "26-bookworm",
+        "24-trixie",
+        "24-bookworm"
+      ],
+      "default": "26-trixie"
+    }
+  },
+  "platforms": [
+    "linux"
+  ]
+}

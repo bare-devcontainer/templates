@@ -1,0 +1,6 @@
+{
+  "name": "Node.js",
+  "image": "ghcr.io/bare-devcontainer/node:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "init": true
+}

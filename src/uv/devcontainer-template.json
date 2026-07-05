@@ -1,0 +1,23 @@
+{
+  "id": "uv",
+  "version": "1.0.0",
+  "name": "uv (Bare Dev Container)",
+  "description": "A Python development environment based on the bare-devcontainer uv image, with uv installed for managing Python versions and packages.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/uv",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Debian version",
+      "proposals": [
+        "trixie",
+        "bookworm"
+      ],
+      "default": "trixie"
+    }
+  },
+  "platforms": [
+    "linux"
+  ]
+}

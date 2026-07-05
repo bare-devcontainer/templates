@@ -1,0 +1,23 @@
+{
+  "id": "terraform",
+  "version": "1.0.0",
+  "name": "Terraform (Bare Dev Container)",
+  "description": "An infrastructure-as-code development environment based on the bare-devcontainer Terraform image, with the Terraform CLI and terraform-ls installed.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/terraform",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Terraform version and Debian version",
+      "proposals": [
+        "1.15-trixie",
+        "1.15-bookworm"
+      ],
+      "default": "1.15-trixie"
+    }
+  },
+  "platforms": [
+    "linux"
+  ]
+}

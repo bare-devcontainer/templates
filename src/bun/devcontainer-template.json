@@ -1,0 +1,23 @@
+{
+  "id": "bun",
+  "version": "1.0.0",
+  "name": "Bun (Bare Dev Container)",
+  "description": "A JavaScript/TypeScript development environment based on the bare-devcontainer Bun image, with the Bun runtime installed.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/bun",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Bun version and Debian version",
+      "proposals": [
+        "1-trixie",
+        "1-bookworm"
+      ],
+      "default": "1-trixie"
+    }
+  },
+  "platforms": [
+    "linux"
+  ]
+}
