@@ -1,0 +1,24 @@
+{
+  "name": "uv",
+  "image": "ghcr.io/bare-devcontainer/uv:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "init": true,
+  "mounts": [
+    // Persist uv's cache (downloaded Python interpreters and packages) across rebuilds.
+    {
+      "source": "${devcontainerId}-uv-cache",
+      "target": "/home/dev/.cache/uv",
+      "type": "volume"
+    }
+  ],
+  // Uncomment the following options to enable the debugger.
+  // "capAdd": ["SYS_PTRACE"],
+  // "securityOpt": ["seccomp=unconfined"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  }
+}

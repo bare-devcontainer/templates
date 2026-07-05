@@ -1,0 +1,24 @@
+{
+  "name": "Bun",
+  "image": "ghcr.io/bare-devcontainer/bun:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "init": true,
+  "mounts": [
+    // Persist Bun's global install cache across rebuilds to avoid re-downloading packages.
+    {
+      "source": "${devcontainerId}-bun-install-cache",
+      "target": "/home/dev/.bun/install/cache",
+      "type": "volume"
+    }
+  ],
+  // Uncomment the following options to enable the debugger.
+  // "capAdd": ["SYS_PTRACE"],
+  // "securityOpt": ["seccomp=unconfined"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "oven.bun-vscode"
+      ]
+    }
+  }
+}
