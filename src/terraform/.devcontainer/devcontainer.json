@@ -3,17 +3,6 @@
   "image": "ghcr.io/bare-devcontainer/terraform:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
-  "containerEnv": {
-    "TF_PLUGIN_CACHE_DIR": "/home/dev/.terraform.d/plugin-cache"
-  },
-  "mounts": [
-    // Persist Terraform's provider plugin cache across rebuilds to avoid re-downloading providers.
-    {
-      "source": "${devcontainerId}-terraform-plugin-cache",
-      "target": "/home/dev/.terraform.d/plugin-cache",
-      "type": "volume"
-    }
-  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -21,9 +10,18 @@
         "HashiCorp.HCL"
       ],
       "settings": {
-        // The extension bundles its own terraform-ls by default; point it at the
-        // one installed in the image instead of downloading a separate copy.
-        "terraform.languageServer.path": "/usr/local/bin/terraform-ls"
+        "terraform.languageServer.path": "/usr/local/bin/terraform-ls",
+        "terraform.languageServer.terraform.path": "/usr/local/bin/terraform",
+        "[terraform]": {
+          "editor.defaultFormatter": "hashicorp.terraform",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file"
+        },
+        "[terraform-vars]": {
+          "editor.defaultFormatter": "hashicorp.terraform",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file"
+        }
       }
     }
   }
