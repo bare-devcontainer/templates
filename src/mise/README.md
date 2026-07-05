@@ -1,7 +1,7 @@
 
-# mise (Bare Dev Container) (mise)
+# mise (mise)
 
-A development environment with mise (polyglot runtime manager) on Debian, for managing multiple language runtimes per project.
+Minimal, supply-chain-secure dev container with mise for multiple runtimes.
 
 ## Options
 
