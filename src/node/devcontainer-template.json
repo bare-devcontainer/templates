@@ -1,8 +1,8 @@
 {
   "id": "node",
   "version": "1.0.0",
-  "name": "Node.js (Bare Dev Container)",
-  "description": "A Node.js development environment based on the bare-devcontainer Node.js image.",
+  "name": "Node.js",
+  "description": "Minimal, supply-chain-secure Node.js dev container for JS/TypeScript.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/node",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
@@ -21,5 +21,14 @@
   },
   "platforms": [
     "linux"
+  ],
+  "keywords": [
+    "node",
+    "nodejs",
+    "javascript",
+    "js",
+    "typescript",
+    "ts",
+    "npm"
   ]
 }
