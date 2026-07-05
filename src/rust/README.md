@@ -1,7 +1,7 @@
 
-# Rust (Bare Dev Container) (rust)
+# Rust (rust)
 
-A Rust development environment based on the bare-devcontainer Rust image, with Rust installed via rustup.
+Minimal, supply-chain-secure dev container with Rust.
 
 ## Options
 
