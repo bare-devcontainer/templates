@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "bun",
+      "request": "launch",
+      "name": "Debug Bun",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "runtime": "/usr/local/bin/bun"
+    },
+    {
+      "type": "bun",
+      "request": "attach",
+      "name": "Attach to Bun",
+      "url": "ws://localhost:6499/"
+    }
+  ]
+}
