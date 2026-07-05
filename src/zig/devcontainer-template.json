@@ -1,8 +1,8 @@
 {
   "id": "zig",
   "version": "1.2.0",
-  "name": "Zig (Bare Dev Container)",
-  "description": "A Zig development environment based on the bare-devcontainer Zig image.",
+  "name": "Zig",
+  "description": "Minimal, supply-chain-secure dev container with Zig.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/zig",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
@@ -21,5 +21,8 @@
   },
   "platforms": [
     "linux"
+  ],
+  "keywords": [
+    "zig"
   ]
 }

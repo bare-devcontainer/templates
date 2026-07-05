@@ -1,8 +1,8 @@
 {
   "id": "rust",
   "version": "1.2.0",
-  "name": "Rust (Bare Dev Container)",
-  "description": "A Rust development environment based on the bare-devcontainer Rust image, with Rust installed via rustup.",
+  "name": "Rust",
+  "description": "Minimal, supply-chain-secure dev container with Rust.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/rust",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
@@ -18,5 +18,10 @@
   },
   "platforms": [
     "linux"
+  ],
+  "keywords": [
+    "rust",
+    "rustup",
+    "cargo"
   ]
 }
