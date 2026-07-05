@@ -20,7 +20,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "hashicorp.terraform"
+        "hashicorp.terraform",
+        "HashiCorp.HCL"
       ]
     }
   }
