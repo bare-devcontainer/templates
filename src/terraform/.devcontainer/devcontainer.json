@@ -3,17 +3,6 @@
   "image": "ghcr.io/bare-devcontainer/terraform:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
-  "containerEnv": {
-    "TF_PLUGIN_CACHE_DIR": "/home/dev/.terraform.d/plugin-cache"
-  },
-  "mounts": [
-    // Persist Terraform's provider plugin cache across rebuilds to avoid re-downloading providers.
-    {
-      "source": "${devcontainerId}-terraform-plugin-cache",
-      "target": "/home/dev/.terraform.d/plugin-cache",
-      "type": "volume"
-    }
-  ],
   "customizations": {
     "vscode": {
       "extensions": [
