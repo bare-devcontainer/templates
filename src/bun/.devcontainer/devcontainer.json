@@ -15,7 +15,10 @@
     "vscode": {
       "extensions": [
         "oven.bun-vscode"
-      ]
+      ],
+      "settings": {
+        "bun.runtime": "/usr/local/bin/bun"
+      }
     }
   }
 }
