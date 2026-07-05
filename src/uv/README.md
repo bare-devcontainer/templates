@@ -1,7 +1,7 @@
 
-# uv (Bare Dev Container) (uv)
+# Python (uv) (uv)
 
-A Python development environment based on the bare-devcontainer uv image, with uv installed for managing Python versions and packages.
+Minimal, supply-chain-secure Python dev container with uv.
 
 ## Options
 
