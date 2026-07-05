@@ -1,7 +1,7 @@
 
-# Zig (Bare Dev Container) (zig)
+# Zig (zig)
 
-A Zig development environment based on the bare-devcontainer Zig image.
+Minimal, supply-chain-secure dev container with Zig.
 
 ## Options
 
