@@ -1,7 +1,7 @@
 
-# Go (Bare Dev Container) (golang)
+# Go (golang)
 
-A Go development environment based on the bare-devcontainer Go image.
+Minimal, supply-chain-secure dev container with Go toolchain.
 
 ## Options
 

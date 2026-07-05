@@ -1,7 +1,7 @@
 
-# Node.js (Bare Dev Container) (node)
+# Node.js (node)
 
-A Node.js development environment based on the bare-devcontainer Node.js image.
+Minimal, supply-chain-secure Node.js dev container for JS/TypeScript.
 
 ## Options
 

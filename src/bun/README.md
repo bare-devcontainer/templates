@@ -1,7 +1,7 @@
 
-# Bun (Bare Dev Container) (bun)
+# Bun (bun)
 
-A JavaScript/TypeScript development environment based on the bare-devcontainer Bun image, with the Bun runtime installed.
+Minimal, supply-chain-secure dev container with Bun for JS/TypeScript.
 
 ## Options
 

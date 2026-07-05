@@ -1,7 +1,7 @@
 
-# Terraform (Bare Dev Container) (terraform)
+# Terraform (terraform)
 
-An infrastructure-as-code development environment based on the bare-devcontainer Terraform image, with the Terraform CLI and terraform-ls installed.
+Minimal, supply-chain-secure dev container with Terraform CLI and terraform-ls.
 
 ## Options
 
