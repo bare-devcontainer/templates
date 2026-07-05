@@ -19,7 +19,12 @@
       "extensions": [
         "hashicorp.terraform",
         "HashiCorp.HCL"
-      ]
+      ],
+      "settings": {
+        // The extension bundles its own terraform-ls by default; point it at the
+        // one installed in the image instead of downloading a separate copy.
+        "terraform.languageServer.path": "/usr/local/bin/terraform-ls"
+      }
     }
   }
 }
