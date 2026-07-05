@@ -11,9 +11,6 @@
       "type": "volume"
     }
   ],
-  // Uncomment the following options to enable the debugger.
-  // "capAdd": ["SYS_PTRACE"],
-  // "securityOpt": ["seccomp=unconfined"],
   "customizations": {
     "vscode": {
       "extensions": [

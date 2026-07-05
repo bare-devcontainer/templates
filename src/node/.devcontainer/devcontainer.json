@@ -3,7 +3,4 @@
   "image": "ghcr.io/bare-devcontainer/node:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true
-  // Uncomment the following options to enable the debugger.
-  // "capAdd": ["SYS_PTRACE"],
-  // "securityOpt": ["seccomp=unconfined"],
 }
