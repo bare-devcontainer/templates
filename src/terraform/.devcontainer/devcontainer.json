@@ -3,6 +3,12 @@
   "image": "ghcr.io/bare-devcontainer/terraform:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
+  // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
+  // "remoteEnv": {
+  //   "VISUAL": "code --wait",
+  //   "EDITOR": "code --wait",
+  //   "GIT_EDITOR": "code --wait"
+  // },
   "customizations": {
     "vscode": {
       "extensions": [

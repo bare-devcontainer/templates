@@ -3,6 +3,12 @@
   "image": "ghcr.io/bare-devcontainer/rust:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
+  // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
+  // "remoteEnv": {
+  //   "VISUAL": "code --wait",
+  //   "EDITOR": "code --wait",
+  //   "GIT_EDITOR": "code --wait"
+  // },
   "mounts": [
     // Persist the Cargo registry cache across rebuilds to avoid re-downloading crates.
     // Only registry/ and git/ are mounted; ~/.cargo/bin is intentionally left in the image layer.
