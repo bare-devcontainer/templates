@@ -1,7 +1,7 @@
 
-# Debian (Bare Dev Container) (debian)
+# Debian (debian)
 
-A minimal Debian development environment based on the bare-devcontainer Debian image.
+Minimal, supply-chain-secure Debian base for any development stack.
 
 ## Options
 
