@@ -9,6 +9,14 @@
   //   "EDITOR": "code --wait",
   //   "GIT_EDITOR": "code --wait"
   // },
+  "mounts": [
+    // Persist the Terraform plugin cache across container rebuilds.
+    {
+      "source": "${devcontainerId}-terraform-plugin-cache",
+      "target": "/home/dev/.terraform.d/plugin-cache",
+      "type": "volume"
+    },
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
