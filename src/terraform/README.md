@@ -7,7 +7,7 @@ Minimal, supply-chain-secure dev container with Terraform CLI and terraform-ls.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| imageVariant | Terraform version and Debian version | string | 1.15-trixie |
+| imageVariant | Terraform version and Debian version | string | 1-trixie |
 
 
 
