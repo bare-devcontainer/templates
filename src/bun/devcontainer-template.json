@@ -1,6 +1,6 @@
 {
   "id": "bun",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Bun",
   "description": "Minimal, supply-chain-secure dev container with Bun for JS/TypeScript.",
   "publisher": "Bare Dev Container Maintainers",

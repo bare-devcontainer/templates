@@ -1,6 +1,6 @@
 {
   "id": "node",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Node.js",
   "description": "Minimal, supply-chain-secure Node.js dev container for JS/TypeScript.",
   "publisher": "Bare Dev Container Maintainers",

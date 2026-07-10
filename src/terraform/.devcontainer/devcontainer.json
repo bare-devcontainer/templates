@@ -1,5 +1,7 @@
 {
   "name": "Terraform",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/terraform:1-trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
   "image": "ghcr.io/bare-devcontainer/terraform:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
