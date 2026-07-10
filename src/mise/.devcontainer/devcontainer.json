@@ -1,5 +1,7 @@
 {
   "name": "mise",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/mise:trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
   "image": "ghcr.io/bare-devcontainer/mise:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true

@@ -1,6 +1,6 @@
 {
   "id": "zig",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "name": "Zig",
   "description": "Minimal, supply-chain-secure dev container with Zig.",
   "publisher": "Bare Dev Container Maintainers",

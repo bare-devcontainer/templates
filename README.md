@@ -24,6 +24,18 @@ devcontainer templates apply --template-id ghcr.io/bare-devcontainer/templates/<
 
 Replace `<template-name>` with one of the names from the [Templates](#templates) section below.
 
+## Pinning Images to a Digest
+
+After applying a template, we recommend pinning the `image` in your `.devcontainer/devcontainer.json` to a specific digest:
+
+```json
+"image": "ghcr.io/bare-devcontainer/debian:trixie@sha256:<digest>"
+```
+
+VS Code does not re-pull a tag-only image on **Rebuild Container** or **Rebuild Container Without Cache**, so updates pushed under the same tag are silently ignored ([open issue](https://github.com/microsoft/vscode-remote-release/issues/7104)). A digest-pinned reference ensures each rebuild uses exactly the image you expect.
+
+If you use [Renovate](https://docs.renovatebot.com/) or Dependabot, they can automatically update digest-pinned image references when a new image is published.
+
 ## Templates
 
 | Template | Registry | Description |

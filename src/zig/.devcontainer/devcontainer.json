@@ -1,5 +1,7 @@
 {
   "name": "Zig",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/zig:0.16-trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
   "image": "ghcr.io/bare-devcontainer/zig:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "init": true,
