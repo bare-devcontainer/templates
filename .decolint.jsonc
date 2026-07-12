@@ -1,0 +1,16 @@
+{
+  "platforms": ["vscode"],
+  "categories": {
+    "correctness": "error",
+    "security": "error",
+    "reproducibility": "error",
+    "style": "error"
+  },
+  "rules": {
+    // Templates reference images by the ${templateOption:imageVariant} tag placeholder;
+    // users pin to a digest themselves (see README), so digest pinning can't be enforced here.
+    "pin-image-digest": "off",
+    // Templates leave VS Code extensions unpinned so users receive the latest versions.
+    "pin-extension-version": "off"
+  }
+}

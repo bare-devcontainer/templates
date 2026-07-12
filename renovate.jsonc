@@ -23,6 +23,9 @@
         ".github/workflows/**"
       ],
       "matchStrings": [
+        // Docker image pinned as `tag@sha256:digest` following a `# renovate:` comment
+        // e.g. "ghcr.io/bare-devcontainer/decolint:0.1.0@sha256:abc123..."
+        "# renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))? depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s+\\S+: \"[^\"]*:(?<currentValue>[^\":@]+)@(?<currentDigest>sha256:[a-f0-9]+)\"",
         // YAML value following a `# renovate:` comment in the form `key: "version"`
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+\\S+: \"(?<currentValue>[^\"]+)\""
       ],
