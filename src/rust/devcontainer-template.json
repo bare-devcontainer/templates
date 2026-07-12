@@ -1,6 +1,6 @@
 {
   "id": "rust",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "name": "Rust",
   "description": "Minimal, supply-chain-secure dev container with Rust.",
   "publisher": "Bare Dev Container Maintainers",
@@ -11,7 +11,8 @@
       "type": "string",
       "description": "Debian version",
       "proposals": [
-        "trixie"
+        "trixie",
+        "bookworm"
       ],
       "default": "trixie"
     }
