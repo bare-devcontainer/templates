@@ -20,13 +20,13 @@
       "source": "${devcontainerId}-terraform-plugin-cache",
       "target": "/home/dev/.terraform.d/plugin-cache",
       "type": "volume"
-    },
+    }
   ],
   "customizations": {
     "vscode": {
       "extensions": [
         "hashicorp.terraform",
-        "HashiCorp.HCL"
+        "hashicorp.hcl"
       ],
       "settings": {
         "terraform.languageServer.path": "/usr/local/bin/terraform-ls",

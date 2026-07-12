@@ -1,6 +1,6 @@
 {
   "id": "terraform",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "name": "Terraform",
   "description": "Minimal, supply-chain-secure dev container with Terraform CLI and terraform-ls.",
   "publisher": "Bare Dev Container Maintainers",
