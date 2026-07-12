@@ -3,6 +3,12 @@
   "build": {
     "dockerfile": "./Dockerfile"
   },
+  "runArgs": [
+    "--cap-drop=ALL"
+  ],
+  "securityOpt": [
+    "no-new-privileges"
+  ],
   "remoteEnv": {
     "EDITOR": "code --wait",
     "VISUAL": "code --wait"

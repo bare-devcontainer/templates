@@ -1,0 +1,18 @@
+{
+  "platforms": [
+    "vscode"
+  ],
+  "categories": {
+    "correctness": "error",
+    "security": "error",
+    "reproducibility": "error",
+    "style": "error"
+  },
+  "rules": {
+    // Pinning is intentionally omitted in these templates because updating them for every digest
+    // or extension version bump is not practical.
+    // Users are encouraged to pin images and extensions in their own devcontainer.json after applying the template.
+    "pin-image-digest": "off",
+    "pin-extension-version": "off"
+  }
+}

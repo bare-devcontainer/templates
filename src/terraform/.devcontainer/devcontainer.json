@@ -4,6 +4,9 @@
   // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
   "image": "ghcr.io/bare-devcontainer/terraform:${templateOption:imageVariant}",
   "remoteUser": "dev",
+  "runArgs": ["--cap-drop=ALL"],
+  // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
+  "securityOpt": ["no-new-privileges"],
   "init": true,
   // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
   // "remoteEnv": {
