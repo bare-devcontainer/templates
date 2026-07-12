@@ -10,7 +10,7 @@ src/
       devcontainer.json          # dev container config using the template's image
 .github/workflows/
   release.yml                   # publishes templates to GHCR
-  test.yml                      # verifies templates build and start using the devcontainer CLI
+  ci.yml                        # lints templates and verifies they build and start using the devcontainer CLI
 .devcontainer/                  # dev container for working in this repo
 renovate.jsonc                  # Renovate config
 ```
