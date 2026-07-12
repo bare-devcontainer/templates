@@ -7,11 +7,25 @@
   "runArgs": ["--cap-drop=ALL"],
   // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
   "securityOpt": ["no-new-privileges"],
-  "init": true
+  "init": true,
   // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
   // "remoteEnv": {
   //   "VISUAL": "code --wait",
   //   "EDITOR": "code --wait",
   //   "GIT_EDITOR": "code --wait"
-  // }
+  // },
+  "mounts": [
+    // Persist mise-managed toolchains across rebuilds to avoid re-installing them.
+    {
+      "source": "${devcontainerId}-mise-data",
+      "target": "/home/dev/.local/share/mise",
+      "type": "volume"
+    },
+    // Persist mise's download cache across rebuilds.
+    {
+      "source": "${devcontainerId}-mise-cache",
+      "target": "/home/dev/.cache/mise",
+      "type": "volume"
+    }
+  ]
 }
