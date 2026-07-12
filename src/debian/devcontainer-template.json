@@ -1,6 +1,6 @@
 {
   "id": "debian",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "name": "Debian",
   "description": "Minimal, supply-chain-secure Debian base for any development stack.",
   "publisher": "Bare Dev Container Maintainers",

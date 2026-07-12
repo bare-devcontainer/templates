@@ -1,6 +1,6 @@
 {
   "id": "rust",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "name": "Rust",
   "description": "Minimal, supply-chain-secure dev container with Rust.",
   "publisher": "Bare Dev Container Maintainers",

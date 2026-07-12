@@ -1,6 +1,6 @@
 {
   "id": "golang",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "name": "Go",
   "description": "Minimal, supply-chain-secure dev container with Go toolchain.",
   "publisher": "Bare Dev Container Maintainers",

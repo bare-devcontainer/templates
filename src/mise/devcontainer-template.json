@@ -1,6 +1,6 @@
 {
   "id": "mise",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "name": "mise",
   "description": "Minimal, supply-chain-secure dev container with mise for multiple runtimes.",
   "publisher": "Bare Dev Container Maintainers",

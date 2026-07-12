@@ -7,6 +7,7 @@ Each template is built on top of [Bare Dev Container Images] — minimal base im
 ## Goals
 
 - **Supply-chain security** — built on [Bare Dev Container Images], which limit trusted upstreams to official sources to minimize supply-chain risk.
+- **Security hardening** — each template follows container security best practices such as running as a non-root user and restricting container privileges, minimizing the attack surface of the development environment.
 - **Fast, frequent rebuilds** — each toolchain's primary cache directories are persisted as volumes, so rebuilding to pick up security updates doesn't require re-downloading or recompiling dependencies.
 - **Out-of-the-box editor support** — compilers/toolchains are paired with the relevant LSP and official VS Code extensions/settings, so the environment is ready to use immediately.
 

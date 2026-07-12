@@ -1,6 +1,6 @@
 {
   "id": "uv",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "Python (uv)",
   "description": "Minimal, supply-chain-secure Python dev container with uv.",
   "publisher": "Bare Dev Container Maintainers",
