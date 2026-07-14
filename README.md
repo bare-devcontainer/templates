@@ -1,8 +1,8 @@
 # Bare Dev Container Templates
 
-Minimal, secure, and bloat-free Dev Container templates for various technology stacks.
+Development containers are part of the trusted development environment, yet unverified base images, excessive privileges, and costly rebuilds can expand both software supply-chain and runtime risk—and delay the adoption of security updates.
 
-Each template is built on top of [Bare Dev Container Images] — minimal base images with a reduced attack surface that receive regular security updates. See the [Bare Dev Container Images] repository for details on the design goals and security verification.
+Bare Dev Container Templates offers opinionated, ready-to-use configurations built on [Bare Dev Container Images]. They combine hardened defaults, persistent toolchain caches, and stack-specific editor integration so projects can rebuild frequently without sacrificing day-to-day usability.
 
 ## Goals
 
