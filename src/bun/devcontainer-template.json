@@ -1,8 +1,8 @@
 {
   "id": "bun",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "Bun",
-  "description": "Minimal, supply-chain-secure dev container with Bun for JS/TypeScript.",
+  "description": "Security-focused Bun dev container for JS/TS with hardened defaults and cached installs.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/bun",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",

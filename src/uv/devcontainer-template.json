@@ -1,8 +1,8 @@
 {
   "id": "uv",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "Python (uv)",
-  "description": "Minimal, supply-chain-secure Python dev container with uv.",
+  "description": "Security-focused Python dev container with uv, hardened defaults, and cached packages.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/uv",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
