@@ -41,15 +41,15 @@ If you use [Renovate](https://docs.renovatebot.com/) or Dependabot, they can aut
 
 | Template | Registry | Description |
 |----------|----------|-------------|
-| [Bun](src/bun) | `ghcr.io/bare-devcontainer/templates/bun` | A JavaScript/TypeScript development environment based on the bare-devcontainer Bun image, with the Bun runtime installed. |
-| [Debian](src/debian) | `ghcr.io/bare-devcontainer/templates/debian` | A minimal Debian development environment based on the bare-devcontainer Debian image. |
-| [Go](src/golang) | `ghcr.io/bare-devcontainer/templates/golang` | A Go development environment based on the bare-devcontainer Go image. |
-| [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | A development environment with mise (polyglot runtime manager) on Debian, for managing multiple language runtimes per project. |
-| [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | A Node.js development environment based on the bare-devcontainer Node.js image. |
-| [Rust](src/rust) | `ghcr.io/bare-devcontainer/templates/rust` | A Rust development environment based on the bare-devcontainer Rust image, with Rust installed via rustup. |
-| [Terraform](src/terraform) | `ghcr.io/bare-devcontainer/templates/terraform` | An infrastructure-as-code development environment based on the bare-devcontainer Terraform image, with the Terraform CLI and terraform-ls installed. |
-| [uv](src/uv) | `ghcr.io/bare-devcontainer/templates/uv` | A Python development environment based on the bare-devcontainer uv image, with uv installed for managing Python versions and packages. |
-| [Zig](src/zig) | `ghcr.io/bare-devcontainer/templates/zig` | A Zig development environment based on the bare-devcontainer Zig image. |
+| [Bun](src/bun) | `ghcr.io/bare-devcontainer/templates/bun` | Security-focused Bun dev container for JS/TS with hardened defaults and cached installs. |
+| [Debian](src/debian) | `ghcr.io/bare-devcontainer/templates/debian` | Security-focused minimal Debian base for any stack, with hardened container defaults. |
+| [Go](src/golang) | `ghcr.io/bare-devcontainer/templates/golang` | Security-focused Go dev container with hardened defaults and rebuild-friendly caches. |
+| [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | Security-focused mise dev container for multiple runtimes, with rebuild-friendly caches. |
+| [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | Security-focused Node.js dev container for JS/TS with hardened, non-root defaults. |
+| [Rust](src/rust) | `ghcr.io/bare-devcontainer/templates/rust` | Security-focused Rust dev container with rust-analyzer and persistent Cargo caches. |
+| [Terraform](src/terraform) | `ghcr.io/bare-devcontainer/templates/terraform` | Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching. |
+| [uv](src/uv) | `ghcr.io/bare-devcontainer/templates/uv` | Security-focused Python dev container with uv, hardened defaults, and cached packages. |
+| [Zig](src/zig) | `ghcr.io/bare-devcontainer/templates/zig` | Security-focused Zig dev container with zls integration and a persistent build cache. |
 
 ## License
 

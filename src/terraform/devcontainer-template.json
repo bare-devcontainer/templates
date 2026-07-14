@@ -1,8 +1,8 @@
 {
   "id": "terraform",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "name": "Terraform",
-  "description": "Minimal, supply-chain-secure dev container with Terraform CLI and terraform-ls.",
+  "description": "Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/terraform",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",

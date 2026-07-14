@@ -1,8 +1,8 @@
 {
   "id": "zig",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "name": "Zig",
-  "description": "Minimal, supply-chain-secure dev container with Zig.",
+  "description": "Security-focused Zig dev container with zls integration and a persistent build cache.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/zig",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
