@@ -43,6 +43,7 @@ If you use [Renovate](https://docs.renovatebot.com/) or Dependabot, they can aut
 |----------|----------|-------------|
 | [Bun](src/bun) | `ghcr.io/bare-devcontainer/templates/bun` | Security-focused Bun dev container for JS/TS with hardened defaults and cached installs. |
 | [Debian](src/debian) | `ghcr.io/bare-devcontainer/templates/debian` | Security-focused minimal Debian base for any stack, with hardened container defaults. |
+| [Deno](src/deno) | `ghcr.io/bare-devcontainer/templates/deno` | Security-focused Deno dev container for JS/TS with hardened defaults and cached modules. |
 | [Go](src/golang) | `ghcr.io/bare-devcontainer/templates/golang` | Security-focused Go dev container with hardened defaults and rebuild-friendly caches. |
 | [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | Security-focused mise dev container for multiple runtimes, with rebuild-friendly caches. |
 | [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | Security-focused Node.js dev container for JS/TS with hardened, non-root defaults. |

@@ -1,0 +1,30 @@
+{
+  "id": "deno",
+  "version": "1.0.0",
+  "name": "Deno",
+  "description": "Security-focused Deno dev container for JS/TS with hardened defaults and cached modules.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/deno",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Deno version and Debian version",
+      "proposals": [
+        "2-trixie",
+        "2-bookworm"
+      ],
+      "default": "2-trixie"
+    }
+  },
+  "platforms": [
+    "linux"
+  ],
+  "keywords": [
+    "deno",
+    "javascript",
+    "js",
+    "typescript",
+    "ts"
+  ]
+}

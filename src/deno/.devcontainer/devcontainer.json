@@ -1,0 +1,36 @@
+{
+  "name": "Deno",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/deno:2-trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
+  "image": "ghcr.io/bare-devcontainer/deno:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "runArgs": ["--cap-drop=ALL"],
+  // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
+  "securityOpt": ["no-new-privileges"],
+  "init": true,
+  // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
+  // "remoteEnv": {
+  //   "VISUAL": "code --wait",
+  //   "EDITOR": "code --wait",
+  //   "GIT_EDITOR": "code --wait"
+  // },
+  "mounts": [
+    // Persist Deno's cache (DENO_DIR) across rebuilds to avoid re-downloading remote modules and npm packages.
+    {
+      "source": "${devcontainerId}-deno-cache",
+      "target": "/home/dev/.cache/deno",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "denoland.vscode-deno"
+      ],
+      "settings": {
+        "deno.enable": true,
+        "deno.path": "/usr/local/bin/deno"
+      }
+    }
+  }
+}
