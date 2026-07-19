@@ -9,14 +9,15 @@ Security-focused Go dev container with hardened defaults and rebuild-friendly ca
 |-----|-----|-----|-----|
 | imageVariant | Go version and Debian version | string | 1.26-trixie |
 
-## Base Image
+## Getting Started
 
-This template builds on `ghcr.io/bare-devcontainer/golang`, a minimal Debian-based image from [bare-devcontainer/images](https://github.com/bare-devcontainer/images) that ships the Go toolchain and installs only what that stack needs from official upstreams, with pinned digests, SLSA provenance, and an SPDX SBOM for supply-chain transparency.
+See [Getting Started](https://github.com/bare-devcontainer/templates#getting-started) in the repository README for how to apply this template.
 
 ## Security Hardening
 
 This template applies the shared hardening defaults of Bare Dev Container Templates:
 
+- Builds on `ghcr.io/bare-devcontainer/golang`, a minimal image from [bare-devcontainer/images](https://github.com/bare-devcontainer/images) with pinned digests, SLSA provenance, and an SPDX SBOM for supply-chain transparency.
 - Runs as the non-root `dev` user.
 - Drops all Linux capabilities (`--cap-drop=ALL`) and sets the `no-new-privileges` security option, so processes cannot gain elevated privileges inside the container. Remove `no-new-privileges` from `securityOpt` if you need `su`/`sudo`.
 - Starts an init process (`"init": true`) to reap zombie processes.
