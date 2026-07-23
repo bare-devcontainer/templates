@@ -72,15 +72,15 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: List templates and imageVariant combinations
+      - name: List templates, imageVariant and arch combinations
         id: list
         run: |
           matrix=$(
             find src -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort | while read -r template; do
               jq -c --arg t "$template" '
-                (.options.imageVariant.proposals // [.options.imageVariant.default]) |
-                map({template: $t, imageVariant: .}) |
-                .[]
+                (.options.imageVariant.proposals // [.options.imageVariant.default])[] as $variant |
+                ("amd64", "arm64") as $arch |
+                {template: $t, imageVariant: $variant, arch: $arch}
               ' "src/${template}/devcontainer-template.json"
             done | jq -sc .
           )
@@ -88,7 +88,7 @@ jobs:
 
   verify:
     needs: discover
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
     timeout-minutes: 15
     permissions:
       contents: read
@@ -130,6 +130,18 @@ jobs:
       - name: Build and start container
         run: |
           devcontainer up --id-label "test-container=${{ matrix.template }}" --workspace-folder "${{ steps.apply.outputs.workdir }}"
+
+      - name: Verify container architecture
+        run: |
+          set -eu
+          case "${{ matrix.arch }}" in
+            amd64) expected="x86_64" ;;
+            arm64) expected="aarch64" ;;
+            *) echo "Unknown arch: ${{ matrix.arch }}" >&2; exit 1 ;;
+          esac
+          actual="$(devcontainer exec --id-label "test-container=${{ matrix.template }}" --workspace-folder "${{ steps.apply.outputs.workdir }}" uname -m)"
+          echo "expected=${expected} actual=${actual}"
+          test "${actual}" = "${expected}"
 
       - name: Verify container security settings
         run: |
