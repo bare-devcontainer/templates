@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - 'src/**'
+      - 'test/**'
       - '.decolint.jsonc'
       - '.github/workflows/ci.yml'
   workflow_dispatch:
@@ -117,6 +118,9 @@ jobs:
           workdir="$(mktemp -d)"
           cp -R "src/${{ matrix.template }}/." "${workdir}"
 
+          mkdir -p "${workdir}/.smoke"
+          cp -R "test/_global" "test/${{ matrix.template }}" "${workdir}/.smoke/"
+
           cd "${workdir}"
           escaped=$(printf '%s' "${{ matrix.imageVariant }}" | sed -e 's/[\/&]/\\&/g')
           find . -type f -exec sed -i "s/\${templateOption:imageVariant}/${escaped}/g" {} +
@@ -127,6 +131,20 @@ jobs:
         run: |
           devcontainer up --id-label "test-container=${{ matrix.template }}" --workspace-folder "${{ steps.apply.outputs.workdir }}"
 
-      - name: Verify container is usable
+      - name: Verify container security settings
         run: |
-          devcontainer exec --id-label "test-container=${{ matrix.template }}" --workspace-folder "${{ steps.apply.outputs.workdir }}" echo ok
+          set -eu
+          cid="$(docker ps -q --filter "label=test-container=${{ matrix.template }}")"
+          test -n "${cid}"
+          test "$(echo "${cid}" | wc -l)" -eq 1
+          docker inspect --format '{{json .HostConfig.CapDrop}} {{json .HostConfig.SecurityOpt}} {{.HostConfig.Init}}' "${cid}"
+          docker inspect "${cid}" | jq -e '
+            .[0].HostConfig
+            | (.CapDrop | index("ALL"))
+              and (.SecurityOpt | index("no-new-privileges"))
+              and (.Init == true)
+          '
+
+      - name: Run smoke test
+        run: |
+          devcontainer exec --id-label "test-container=${{ matrix.template }}" --workspace-folder "${{ steps.apply.outputs.workdir }}" sh ".smoke/${{ matrix.template }}/test.sh"
