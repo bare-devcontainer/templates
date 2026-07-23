@@ -1,6 +1,5 @@
 #!/bin/sh
-. "$(dirname "$0")/common.sh"
+. "$(dirname "$0")/../_global/common.sh"
 
-# zig may live at /usr/local/zig without being on PATH.
-zig version || /usr/local/zig/zig version
+zig version
 zls --version

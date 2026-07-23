@@ -1,5 +1,5 @@
 #!/bin/sh
-. "$(dirname "$0")/common.sh"
+. "$(dirname "$0")/../_global/common.sh"
 
 go version
 gopls version

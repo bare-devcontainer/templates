@@ -1,7 +1,6 @@
 #!/bin/sh
-. "$(dirname "$0")/common.sh"
+. "$(dirname "$0")/../_global/common.sh"
 
+# The bare node image ships the node binary only (no npm/npx/corepack).
 node --version
-npm --version
 node -e 'console.log("ok")'
-npx --yes tsc --version

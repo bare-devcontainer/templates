@@ -119,7 +119,7 @@ jobs:
           cp -R "src/${{ matrix.template }}/." "${workdir}"
 
           mkdir -p "${workdir}/.smoke"
-          cp "test/_global/common.sh" "test/${{ matrix.template }}/test.sh" "${workdir}/.smoke/"
+          cp -R "test/_global" "test/${{ matrix.template }}" "${workdir}/.smoke/"
 
           cd "${workdir}"
           escaped=$(printf '%s' "${{ matrix.imageVariant }}" | sed -e 's/[\/&]/\\&/g')
@@ -147,4 +147,4 @@ jobs:
 
       - name: Run smoke test
         run: |
-          devcontainer exec --id-label "test-container=${{ matrix.template }}" --workspace-folder "${{ steps.apply.outputs.workdir }}" sh .smoke/test.sh
+          devcontainer exec --id-label "test-container=${{ matrix.template }}" --workspace-folder "${{ steps.apply.outputs.workdir }}" sh ".smoke/${{ matrix.template }}/test.sh"
