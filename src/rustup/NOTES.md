@@ -6,7 +6,7 @@ See [Getting Started](https://github.com/bare-devcontainer/templates#getting-sta
 
 This template applies the shared hardening defaults of Bare Dev Container Templates:
 
-- Builds on `ghcr.io/bare-devcontainer/rust`, a minimal image from [bare-devcontainer/images](https://github.com/bare-devcontainer/images) with pinned digests, SLSA provenance, and an SPDX SBOM for supply-chain transparency.
+- Builds on `ghcr.io/bare-devcontainer/rustup`, a minimal image from [bare-devcontainer/images](https://github.com/bare-devcontainer/images) with pinned digests, SLSA provenance, and an SPDX SBOM for supply-chain transparency.
 - Runs as the non-root `dev` user.
 - Drops all Linux capabilities (`--cap-drop=ALL`) and sets the `no-new-privileges` security option, so processes cannot gain elevated privileges inside the container. Remove `no-new-privileges` from `securityOpt` if you need `su`/`sudo`.
 - Starts an init process (`"init": true`) to reap zombie processes.
@@ -19,8 +19,8 @@ Cargo's registry and git caches are persisted in named volumes, so rebuilding th
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
-| `${devcontainerId}-rust-cargo-registry` | `/home/dev/.cargo/registry` | Cargo registry cache |
-| `${devcontainerId}-rust-cargo-git` | `/home/dev/.cargo/git` | Cargo's cache of git-sourced dependencies |
+| `${devcontainerId}-rustup-cargo-registry` | `/home/dev/.cargo/registry` | Cargo registry cache |
+| `${devcontainerId}-rustup-cargo-git` | `/home/dev/.cargo/git` | Cargo's cache of git-sourced dependencies |
 
 Only `registry/` and `git/` are mounted; `~/.cargo/bin` is intentionally left in the image layer so the toolchain binaries always come from the image.
 

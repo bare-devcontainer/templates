@@ -47,7 +47,7 @@ If you use [Renovate](https://docs.renovatebot.com/) or Dependabot, they can aut
 | [Go](src/golang) | `ghcr.io/bare-devcontainer/templates/golang` | Security-focused Go dev container with hardened defaults and rebuild-friendly caches. |
 | [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | Security-focused mise dev container for multiple runtimes, with rebuild-friendly caches. |
 | [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | Security-focused Node.js dev container for JS/TS with hardened, non-root defaults. |
-| [Rust](src/rust) | `ghcr.io/bare-devcontainer/templates/rust` | Security-focused Rust dev container with rust-analyzer and persistent Cargo caches. |
+| [Rust](src/rustup) | `ghcr.io/bare-devcontainer/templates/rustup` | Security-focused Rust dev container with rust-analyzer and persistent Cargo caches. |
 | [Terraform](src/terraform) | `ghcr.io/bare-devcontainer/templates/terraform` | Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching. |
 | [uv](src/uv) | `ghcr.io/bare-devcontainer/templates/uv` | Security-focused Python dev container with uv, hardened defaults, and cached packages. |
 | [Zig](src/zig) | `ghcr.io/bare-devcontainer/templates/zig` | Security-focused Zig dev container with zls integration and a persistent build cache. |
