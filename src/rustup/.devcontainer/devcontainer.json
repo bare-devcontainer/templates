@@ -1,8 +1,8 @@
 {
   "name": "Rust",
-  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/rust:trixie@sha256:<digest>").
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/rustup:trixie@sha256:<digest>").
   // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
-  "image": "ghcr.io/bare-devcontainer/rust:${templateOption:imageVariant}",
+  "image": "ghcr.io/bare-devcontainer/rustup:${templateOption:imageVariant}",
   "remoteUser": "dev",
   "runArgs": ["--cap-drop=ALL"],
   // Uncomment the following options to enable the debugger.
@@ -20,13 +20,13 @@
     // Persist the Cargo registry cache across rebuilds to avoid re-downloading crates.
     // Only registry/ and git/ are mounted; ~/.cargo/bin is intentionally left in the image layer.
     {
-      "source": "${devcontainerId}-rust-cargo-registry",
+      "source": "${devcontainerId}-rustup-cargo-registry",
       "target": "/home/dev/.cargo/registry",
       "type": "volume"
     },
     // Persist Cargo's cache of git-sourced dependencies across rebuilds.
     {
-      "source": "${devcontainerId}-rust-cargo-git",
+      "source": "${devcontainerId}-rustup-cargo-git",
       "target": "/home/dev/.cargo/git",
       "type": "volume"
     }

@@ -1,7 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/../_global/common.sh"
 
-# The bare rust image ships rustup only; users install their own toolchain.
+# The bare rustup image ships rustup only; users install their own toolchain.
 rustup --version
 rustup toolchain list
 
