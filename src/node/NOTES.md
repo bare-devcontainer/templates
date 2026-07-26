@@ -13,9 +13,17 @@ This template applies the shared hardening defaults of Bare Dev Container Templa
 
 After applying the template, we recommend pinning the image to a digest so every rebuild uses exactly the image you expect — see [Pinning Images to a Digest](https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest).
 
+## Persistent Caches
+
+Corepack's cache directory is persisted in a named volume, so rebuilding the container to pick up image updates doesn't require re-downloading package managers:
+
+| Volume | Mount path | Purpose |
+|--------|------------|---------|
+| `${devcontainerId}-node-corepack-cache` | `/home/dev/.cache/node/corepack` | Corepack's cache of downloaded `yarn`/`pnpm` releases |
+
 ## Tips
 
-- To keep npm's download cache across container rebuilds, add a named volume to `mounts` in `devcontainer.json`:
+- npm and npx are not shipped in the image. If you enable npm through Corepack, keep npm's download cache across container rebuilds by adding a named volume to `mounts` in `devcontainer.json`:
 
   ```json
   {
