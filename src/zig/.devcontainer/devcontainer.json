@@ -1,3 +1,6 @@
+// Created from the "zig" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/zig
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
 {
   "name": "Zig",
   // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/zig:0.16-trixie@sha256:<digest>").

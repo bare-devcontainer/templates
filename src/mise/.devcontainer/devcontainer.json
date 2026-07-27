@@ -1,3 +1,6 @@
+// Created from the "mise" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/mise
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
 {
   "name": "mise",
   // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/mise:trixie@sha256:<digest>").

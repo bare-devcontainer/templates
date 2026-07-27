@@ -1,3 +1,6 @@
+// Created from the "bun" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/bun
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
 {
   "name": "Bun",
   // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/bun:1-trixie@sha256:<digest>").
