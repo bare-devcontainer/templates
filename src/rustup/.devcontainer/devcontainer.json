@@ -1,3 +1,6 @@
+// Created from the "rustup" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/rustup
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
 {
   "name": "Rust",
   // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/rustup:trixie@sha256:<digest>").
