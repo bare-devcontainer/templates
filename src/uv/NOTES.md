@@ -13,14 +13,6 @@ This template applies the shared hardening defaults of Bare Dev Container Templa
 
 After applying the template, we recommend pinning the image to a digest so every rebuild uses exactly the image you expect — see [Pinning Images to a Digest](https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest).
 
-## Persistent Caches
-
-uv's cache is persisted in a named volume, so Python interpreters and packages downloaded by uv survive container rebuilds:
-
-| Volume | Mount path | Purpose |
-|--------|------------|---------|
-| `${devcontainerId}-uv-cache` | `/home/dev/.cache/uv` | uv's cache of downloaded Python interpreters and packages |
-
 ## Usage Notes
 
 [uv](https://docs.astral.sh/uv/) manages Python versions, virtual environments, and packages. For example:
@@ -30,6 +22,14 @@ uv python install 3.13   # install a Python interpreter
 uv venv                  # create a virtual environment
 uv sync                  # install project dependencies
 ```
+
+## Persistent Caches
+
+uv's cache is persisted in a named volume, so Python interpreters and packages downloaded by uv survive container rebuilds:
+
+| Volume | Mount path | Purpose |
+|--------|------------|---------|
+| `${devcontainerId}-uv-cache` | `/home/dev/.cache/uv` | uv's cache of downloaded Python interpreters and packages |
 
 ## Editor Integration
 

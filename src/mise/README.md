@@ -24,15 +24,6 @@ This template applies the shared hardening defaults of Bare Dev Container Templa
 
 After applying the template, we recommend pinning the image to a digest so every rebuild uses exactly the image you expect — see [Pinning Images to a Digest](https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest).
 
-## Persistent Caches
-
-mise's data directory and download cache are persisted in named volumes, so toolchains installed with mise survive container rebuilds and don't need to be re-downloaded:
-
-| Volume | Mount path | Purpose |
-|--------|------------|---------|
-| `${devcontainerId}-mise-data` | `/home/dev/.local/share/mise` | mise-managed toolchains |
-| `${devcontainerId}-mise-cache` | `/home/dev/.cache/mise` | mise's download cache |
-
 ## Usage Notes
 
 [mise](https://mise.jdx.dev/) is a polyglot runtime manager. Install and pin the runtimes your project needs, for example:
@@ -43,6 +34,15 @@ mise use python@3.13
 ```
 
 The installed runtimes are stored in the persisted data volume, so they remain available after rebuilding the container.
+
+## Persistent Caches
+
+mise's data directory and download cache are persisted in named volumes, so toolchains installed with mise survive container rebuilds and don't need to be re-downloaded:
+
+| Volume | Mount path | Purpose |
+|--------|------------|---------|
+| `${devcontainerId}-mise-data` | `/home/dev/.local/share/mise` | mise-managed toolchains |
+| `${devcontainerId}-mise-cache` | `/home/dev/.cache/mise` | mise's download cache |
 
 ## Tips
 
