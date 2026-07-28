@@ -32,7 +32,7 @@ Each template page documents its options, security defaults, persisted caches, a
 
 ## Getting Started
 
-You need a container runtime such as [Docker](https://www.docker.com/), plus either VS Code with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) or the [devcontainer CLI](https://github.com/devcontainers/cli).
+These templates follow the [Dev Container specification](https://containers.dev/implementors/spec/), so they can be applied and opened with any [tool that supports dev containers](https://containers.dev/supporting). Two common ways to apply one:
 
 ### VS Code
 
@@ -51,31 +51,37 @@ Replace `<template-name>` with one of the names from the [Templates](#templates)
 
 ## What You Get
 
-Applying a template writes a `.devcontainer/devcontainer.json` into your project — nothing else is installed, and there is no runtime dependency on this repository. For example, the Node.js template produces (comments trimmed):
+Applying a template writes a `.devcontainer/devcontainer.json` into your project — nothing else is installed, and there is no runtime dependency on this repository. For example, the uv template produces (comments and editor settings trimmed):
 
 ```json
 {
-  "name": "Node.js",
-  "image": "ghcr.io/bare-devcontainer/node:26-trixie",
+  "name": "uv",
+  "image": "ghcr.io/bare-devcontainer/uv:trixie",
   "remoteUser": "dev",
   "runArgs": ["--cap-drop=ALL"],
   "securityOpt": ["no-new-privileges"],
   "init": true,
   "mounts": [
     {
-      "source": "${devcontainerId}-node-corepack-cache",
-      "target": "/home/dev/.cache/node/corepack",
+      "source": "${devcontainerId}-uv-cache",
+      "target": "/home/dev/.cache/uv",
       "type": "volume"
     }
-  ]
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "charliermarsh.ruff"]
+    }
+  }
 }
 ```
 
-The three parts map to the goals above:
+Each part maps to one of the goals above:
 
 - `image` references a base image from [Bare Dev Container Images], a separate repository that builds minimal images with pinned digests, SLSA provenance, and an SPDX SBOM. This repository ships configuration only; what is installed inside the container is documented there.
 - `remoteUser`, `runArgs`, `securityOpt`, and `init` are the shared hardening defaults, applied identically by every template.
 - `mounts` persists the toolchain's cache directories in named volumes, so rebuilding to pick up an image update doesn't re-download dependencies.
+- `customizations` pairs the toolchain with the relevant extensions and settings, so the editor is ready to use on first open.
 
 The generated file is yours to edit — it is a plain dev container configuration, so you can layer [Features](https://containers.dev/features), add mounts, or relax any of the defaults.
 
