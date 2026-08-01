@@ -1,7 +1,7 @@
 
 # mise (mise)
 
-Security-focused mise dev container for multiple runtimes, with rebuild-friendly caches.
+Security-focused mise dev container for multiple runtimes, with cached tool installs.
 
 ## Options
 

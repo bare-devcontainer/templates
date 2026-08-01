@@ -32,6 +32,8 @@ An option `description` is read while choosing a value, so it should answer "whi
 
 `ci.yml` enforces the length limits: 88 characters for the template `description`, 120 for each option `description`.
 
+Every template `description` opens with `Security-focused` on purpose: the templates are compared against other templates for the same toolchain, where the names are identical and the hardening is the reason to pick this one. Keep the prefix, and spend the rest of the 88 characters on what this template specifically provides (the language server, the cached directory) rather than on wording shared by every template.
+
 The `name` in `.devcontainer/devcontainer.json` must match the template `name`, because the template list and the editor window title show them respectively — a reader should see the same label before and after opening the container. The repository README uses the same label in its template table.
 
 `keywords` are search terms, so list what a user would type to find the template: the toolchain and its aliases, the languages it serves, the tooling the template configures (`terraform-ls`, `ruff`, `corepack`), and the shared `security`, `hardened`, `non-root` that every template ends with. Only list tooling the template actually ships or configures.

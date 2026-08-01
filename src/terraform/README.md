@@ -1,7 +1,7 @@
 
 # Terraform (terraform)
 
-Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching.
+Security-focused Terraform dev container with terraform-ls and a plugin cache volume.
 
 ## Options
 

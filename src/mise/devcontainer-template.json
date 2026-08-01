@@ -2,7 +2,7 @@
   "id": "mise",
   "version": "1.3.3",
   "name": "mise",
-  "description": "Security-focused mise dev container for multiple runtimes, with rebuild-friendly caches.",
+  "description": "Security-focused mise dev container for multiple runtimes, with cached tool installs.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/mise",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",

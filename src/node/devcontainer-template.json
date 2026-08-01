@@ -2,7 +2,7 @@
   "id": "node",
   "version": "1.1.2",
   "name": "Node.js",
-  "description": "Security-focused Node.js dev container for JS/TS with hardened, non-root defaults.",
+  "description": "Security-focused Node.js dev container for JS/TS with non-root defaults and Corepack.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/node",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",

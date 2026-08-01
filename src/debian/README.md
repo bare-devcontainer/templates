@@ -1,7 +1,7 @@
 
 # Debian (debian)
 
-Security-focused minimal Debian base for any stack, with hardened container defaults.
+Security-focused minimal Debian base for any stack, with hardened, non-root defaults.
 
 ## Options
 

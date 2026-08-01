@@ -2,7 +2,7 @@
   "id": "debian",
   "version": "1.2.7",
   "name": "Debian",
-  "description": "Security-focused minimal Debian base for any stack, with hardened container defaults.",
+  "description": "Security-focused minimal Debian base for any stack, with hardened, non-root defaults.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/debian",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",

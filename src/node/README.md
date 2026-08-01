@@ -1,7 +1,7 @@
 
 # Node.js (node)
 
-Security-focused Node.js dev container for JS/TS with hardened, non-root defaults.
+Security-focused Node.js dev container for JS/TS with non-root defaults and Corepack.
 
 ## Options
 

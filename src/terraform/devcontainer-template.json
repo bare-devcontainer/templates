@@ -2,7 +2,7 @@
   "id": "terraform",
   "version": "1.2.6",
   "name": "Terraform",
-  "description": "Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching.",
+  "description": "Security-focused Terraform dev container with terraform-ls and a plugin cache volume.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/terraform",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
