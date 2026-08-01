@@ -12,7 +12,7 @@
   "securityOpt": ["no-new-privileges"],
   "init": true,
   "containerEnv": {
-    // uv copies packages out of its cache volume instead of hardlinking them into the workspace.
+    // The cache volume and the workspace are different filesystems, so hardlinking would fail.
     // See https://github.com/bare-devcontainer/templates/tree/main/src/uv#persistent-caches
     "UV_LINK_MODE": "copy"
   },
