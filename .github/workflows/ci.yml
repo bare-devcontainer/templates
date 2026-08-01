@@ -71,12 +71,71 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
+          fetch-depth: 0
+
+      - name: Select templates affected by the changes
+        id: select
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+
+          all=$(find src -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
+
+          if [[ "${GITHUB_EVENT_NAME}" != "pull_request" ]]; then
+            echo "Event is ${GITHUB_EVENT_NAME}: verifying every template."
+            selected="${all}"
+          else
+            changed=$(git diff --name-only --no-renames "${BASE_SHA}" HEAD)
+            echo "::group::Changed files"
+            echo "${changed}"
+            echo "::endgroup::"
+
+            # Changes outside a single template directory (workflow, shared smoke
+            # test helpers, lint config, ...) can affect every template.
+            global=0
+            affected=""
+            while IFS= read -r file; do
+              [[ -n "${file}" ]] || continue
+              case "${file}" in
+                src/*/*|test/*/*)
+                  name="${file#*/}"
+                  name="${name%%/*}"
+                  if [[ "${name}" == "_global" ]]; then
+                    global=1
+                  elif [[ -d "src/${name}" ]]; then
+                    affected+="${name}"$'\n'
+                  fi
+                  ;;
+                *)
+                  global=1
+                  ;;
+              esac
+            done <<< "${changed}"
+
+            if [[ "${global}" -eq 1 ]]; then
+              echo "Changes affect all templates: verifying every template."
+              selected="${all}"
+            else
+              selected=$(printf '%s' "${affected}" | sort -u)
+            fi
+          fi
+
+          echo "::notice::Templates to verify: $(echo "${selected}" | tr '\n' ' ')"
+          {
+            echo "templates<<EOF"
+            echo "${selected}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: List templates, imageVariant and arch combinations
         id: list
+        env:
+          TEMPLATES: ${{ steps.select.outputs.templates }}
         run: |
           matrix=$(
-            find src -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort | while read -r template; do
+            printf '%s\n' "${TEMPLATES}" | while read -r template; do
+              [ -n "${template}" ] || continue
               jq -c --arg t "$template" '
                 (.options.imageVariant.proposals // [.options.imageVariant.default])[] as $variant |
                 ("amd64", "arm64") as $arch |
@@ -88,6 +147,7 @@ jobs:
 
   verify:
     needs: discover
+    if: needs.discover.outputs.matrix != '[]'
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
     timeout-minutes: 15
     permissions:
