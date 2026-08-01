@@ -51,7 +51,7 @@ The cache volume and the bind-mounted workspace folder are different filesystems
 ## Tips
 
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
-- Copying packages out of the cache costs some time and disk space on every install. To get hardlinks back, keep the cache and the environment on the same volume: mount `${devcontainerId}-uv` at `/home/dev/.uv`, replace `UV_LINK_MODE` with `"UV_CACHE_DIR": "/home/dev/.uv/cache"` and `"UV_PROJECT_ENVIRONMENT": "/home/dev/.uv/venv"`. The environment then lives outside the workspace folder, so point your editor at `/home/dev/.uv/venv/bin/python` (`python.defaultInterpreterPath` in VS Code).
+- The `UV_LINK_MODE=copy` default above costs some time and disk space on every install. To get hardlinking back, keep uv's cache and the project environment on the same volume: mount `${devcontainerId}-uv` at `/home/dev/.uv`, and replace `UV_LINK_MODE` in `containerEnv` with `"UV_CACHE_DIR": "/home/dev/.uv/cache"` and `"UV_PROJECT_ENVIRONMENT": "/home/dev/.uv/venv"`. The environment then lives outside the workspace folder, so point your editor at `/home/dev/.uv/venv/bin/python` (`python.defaultInterpreterPath` in VS Code).
 
 
 ---
