@@ -24,6 +24,11 @@
     "uv",
     "python",
     "pip",
-    "venv"
+    "venv",
+    "astral",
+    "ruff",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

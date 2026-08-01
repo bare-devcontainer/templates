@@ -27,6 +27,9 @@
     "javascript",
     "js",
     "typescript",
-    "ts"
+    "ts",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

@@ -23,6 +23,9 @@
   "keywords": [
     "rust",
     "rustup",
-    "cargo"
+    "cargo",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

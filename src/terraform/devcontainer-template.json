@@ -24,6 +24,10 @@
     "terraform",
     "infrastructure",
     "iac",
-    "hcl"
+    "hcl",
+    "terraform-ls",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

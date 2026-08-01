@@ -23,6 +23,9 @@
     "Zig"
   ],
   "keywords": [
-    "zig"
+    "zig",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

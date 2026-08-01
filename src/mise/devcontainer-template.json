@@ -24,6 +24,9 @@
     "mise",
     "version-manager",
     "toolchain",
-    "runtime"
+    "runtime",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

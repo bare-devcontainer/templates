@@ -29,6 +29,12 @@
     "js",
     "typescript",
     "ts",
-    "npm"
+    "npm",
+    "corepack",
+    "pnpm",
+    "yarn",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

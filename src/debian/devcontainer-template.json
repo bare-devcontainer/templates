@@ -24,6 +24,9 @@
     "debian",
     "linux",
     "base",
-    "scratch"
+    "scratch",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

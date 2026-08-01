@@ -24,6 +24,9 @@
   ],
   "keywords": [
     "go",
-    "golang"
+    "golang",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }
