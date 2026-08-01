@@ -31,6 +31,8 @@ uv's cache is persisted in a named volume, so Python interpreters and packages d
 |--------|------------|---------|
 | `${devcontainerId}-uv-cache` | `/home/dev/.cache/uv` | uv's cache of downloaded Python interpreters and packages |
 
+The cache volume and the bind-mounted workspace folder are different filesystems, so uv cannot hardlink packages from the cache into the project's virtual environment. The template sets `UV_LINK_MODE=copy` in `containerEnv` so uv copies them instead of warning `Failed to hardlink files; falling back to full copy` on every install.
+
 ## Editor Integration
 
 - Installs the `ms-python.python` and `charliermarsh.ruff` VS Code extensions, with Ruff as the default formatter and fix-all/organize-imports run on save for Python files.
@@ -38,3 +40,4 @@ uv's cache is persisted in a named volume, so Python interpreters and packages d
 ## Tips
 
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
+- Copying packages out of the cache costs some time and disk space on every install. To get hardlinks back, keep the cache and the environment on the same volume: mount `${devcontainerId}-uv` at `/home/dev/.uv`, replace `UV_LINK_MODE` with `"UV_CACHE_DIR": "/home/dev/.uv/cache"` and `"UV_PROJECT_ENVIRONMENT": "/home/dev/.uv/venv"`. The environment then lives outside the workspace folder, so point your editor at `/home/dev/.uv/venv/bin/python` (`python.defaultInterpreterPath` in VS Code).

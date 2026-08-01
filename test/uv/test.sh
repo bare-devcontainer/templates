@@ -8,3 +8,7 @@ uv --version
 uv python install
 uv run python --version
 uv run python -c "print('ok')"
+
+# The cache volume and the workspace bind mount are different filesystems, so uv must copy
+# instead of falling back from hardlinking with a warning on every install.
+test "${UV_LINK_MODE}" = "copy"

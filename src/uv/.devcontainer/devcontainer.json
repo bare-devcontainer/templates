@@ -11,6 +11,12 @@
   // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
   "securityOpt": ["no-new-privileges"],
   "init": true,
+  "containerEnv": {
+    // uv's cache lives in a named volume while the project's virtual environment lives in the
+    // bind-mounted workspace folder. Hardlinking across those filesystems is not possible, so uv
+    // falls back to copying and warns on every install. Copy explicitly to avoid the warning.
+    "UV_LINK_MODE": "copy"
+  },
   // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
   // "remoteEnv": {
   //   "VISUAL": "code --wait",
