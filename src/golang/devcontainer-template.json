@@ -1,6 +1,6 @@
 {
   "id": "golang",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "name": "Go",
   "description": "Security-focused Go dev container with hardened defaults and rebuild-friendly caches.",
   "publisher": "Bare Dev Container Maintainers",
@@ -9,7 +9,7 @@
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Go version and Debian version",
+      "description": "Go and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "1.26-trixie",
         "1.26-bookworm",
@@ -20,10 +20,13 @@
     }
   },
   "platforms": [
-    "linux"
+    "Go"
   ],
   "keywords": [
     "go",
-    "golang"
+    "golang",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

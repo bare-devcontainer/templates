@@ -1,6 +1,6 @@
 {
   "id": "uv",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "name": "Python (uv)",
   "description": "Security-focused Python dev container with uv, hardened defaults, and cached packages.",
   "publisher": "Bare Dev Container Maintainers",
@@ -9,7 +9,7 @@
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Debian version",
+      "description": "Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "trixie",
         "bookworm"
@@ -18,12 +18,17 @@
     }
   },
   "platforms": [
-    "linux"
+    "Python"
   ],
   "keywords": [
     "uv",
     "python",
     "pip",
-    "venv"
+    "venv",
+    "astral",
+    "ruff",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

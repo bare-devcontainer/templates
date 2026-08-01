@@ -21,6 +21,25 @@ renovate.jsonc                  # Renovate config
 - Templates should follow the [Dev Container Template specification](https://containers.dev/implementors/templates/).
 - Use English for all documentation and comments.
 
+## Template Metadata
+
+`platforms` lists the languages and platforms a template supports, not the container OS. Use the toolchain the template provides (`["Go"]`, `["Node.js"]`, …), name every language a runtime serves (`["Bun", "JavaScript", "TypeScript"]`), and use `["Any"]` for templates that are not tied to one toolchain.
+
+An option `description` is read while choosing a value, so it should answer "which value do I pick?" instead of restating the value format. `proposals` is a shortlist, not an `enum` — any published tag is accepted, so never word a description as if the listed values were the only ones allowed. Describe `imageVariant` as:
+
+- `<Toolchain> and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.` when the tag pins a toolchain version.
+- `Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.` when the tag only tracks the Debian release.
+
+`ci.yml` enforces the length limits: 88 characters for the template `description`, 120 for each option `description`.
+
+Every template `description` opens with `Security-focused` on purpose: the templates are compared against other templates for the same toolchain, where the names are identical and the hardening is the reason to pick this one. Keep the prefix, and spend the rest of the 88 characters on what this template specifically provides (the language server, the cached directory) rather than on wording shared by every template.
+
+The `name` in `.devcontainer/devcontainer.json` must match the template `name`, because the template list and the editor window title show them respectively — a reader should see the same label before and after opening the container. The repository README uses the same label in its template table.
+
+`keywords` are search terms, so list what a user would type to find the template: the toolchain and its aliases, the languages it serves, the tooling the template configures (`terraform-ls`, `ruff`, `corepack`), and the shared `security`, `hardened`, `non-root` that every template ends with. Only list tooling the template actually ships or configures.
+
+Bump the template `version` when a change under `src/<template>/` is published, metadata-only edits included; GHCR publishes per version, so an unchanged version is not republished. One bump per pull request covers every change it carries.
+
 ## Template Documentation
 
 Each template README is meant to be self-contained: a reader applying a single template should find its options, security defaults, caches, and editor setup on one page, without following links to other files in this repository.
@@ -30,10 +49,11 @@ Each template README is meant to be self-contained: a reader applying a single t
 Use the following section order in `NOTES.md`, omitting any section that does not apply to the template:
 
 1. `Getting Started` — links to the repository README; identical across templates.
-2. `Security Hardening` — the shared hardening defaults; identical except for the base image name.
-3. `Usage Notes` — what the template is for and how to drive its toolchain.
-4. `Persistent Caches` — the named volumes and what they hold.
-5. `Editor Integration` — extensions and settings; omit when the template configures no `customizations`.
-6. `Tips` — optional tweaks the user may want to apply.
+2. `Image Variants` — what `imageVariant` selects, the Debian codename mapping, and a link to the base image's published tags.
+3. `Security Hardening` — the shared hardening defaults; identical except for the base image name.
+4. `Usage Notes` — what the template is for and how to drive its toolchain.
+5. `Persistent Caches` — the named volumes and what they hold.
+6. `Editor Integration` — extensions and settings; omit when the template configures no `customizations`.
+7. `Tips` — optional tweaks the user may want to apply.
 
 The repository README's `## Getting Started` and `## Pinning Images to a Digest` headings are linked by anchor from every `NOTES.md` and from the `devcontainer.json` of every template. Those comments are copied into user projects when a template is applied, so do not rename or remove either heading.

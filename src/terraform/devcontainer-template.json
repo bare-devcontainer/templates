@@ -1,15 +1,15 @@
 {
   "id": "terraform",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "name": "Terraform",
-  "description": "Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching.",
+  "description": "Security-focused Terraform dev container with terraform-ls and a plugin cache volume.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/terraform",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Terraform version and Debian version",
+      "description": "Terraform and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "1-trixie",
         "1-bookworm"
@@ -18,12 +18,16 @@
     }
   },
   "platforms": [
-    "linux"
+    "Terraform"
   ],
   "keywords": [
     "terraform",
     "infrastructure",
     "iac",
-    "hcl"
+    "hcl",
+    "terraform-ls",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

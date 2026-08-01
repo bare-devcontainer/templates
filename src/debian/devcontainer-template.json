@@ -1,15 +1,15 @@
 {
   "id": "debian",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "name": "Debian",
-  "description": "Security-focused minimal Debian base for any stack, with hardened container defaults.",
+  "description": "Security-focused minimal Debian base for any stack, with hardened, non-root defaults.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/debian",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Debian version",
+      "description": "Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "trixie",
         "bookworm"
@@ -18,12 +18,15 @@
     }
   },
   "platforms": [
-    "linux"
+    "Any"
   ],
   "keywords": [
     "debian",
     "linux",
     "base",
-    "scratch"
+    "scratch",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

@@ -1,6 +1,6 @@
 {
   "id": "bun",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "name": "Bun",
   "description": "Security-focused Bun dev container for JS/TS with hardened defaults and cached installs.",
   "publisher": "Bare Dev Container Maintainers",
@@ -9,7 +9,7 @@
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Bun version and Debian version",
+      "description": "Bun and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "1-trixie",
         "1-bookworm"
@@ -18,13 +18,18 @@
     }
   },
   "platforms": [
-    "linux"
+    "Bun",
+    "JavaScript",
+    "TypeScript"
   ],
   "keywords": [
     "bun",
     "javascript",
     "js",
     "typescript",
-    "ts"
+    "ts",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

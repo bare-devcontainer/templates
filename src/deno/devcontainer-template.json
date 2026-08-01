@@ -1,6 +1,6 @@
 {
   "id": "deno",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Deno",
   "description": "Security-focused Deno dev container for JS/TS with hardened defaults and cached modules.",
   "publisher": "Bare Dev Container Maintainers",
@@ -9,7 +9,7 @@
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Deno version and Debian version",
+      "description": "Deno and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "2-trixie",
         "2-bookworm"
@@ -18,13 +18,18 @@
     }
   },
   "platforms": [
-    "linux"
+    "Deno",
+    "JavaScript",
+    "TypeScript"
   ],
   "keywords": [
     "deno",
     "javascript",
     "js",
     "typescript",
-    "ts"
+    "ts",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

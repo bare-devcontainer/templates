@@ -1,6 +1,6 @@
 {
   "id": "rustup",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "name": "Rust",
   "description": "Security-focused Rust dev container with rust-analyzer and persistent Cargo caches.",
   "publisher": "Bare Dev Container Maintainers",
@@ -9,7 +9,7 @@
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Debian version",
+      "description": "Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "trixie",
         "bookworm"
@@ -18,11 +18,14 @@
     }
   },
   "platforms": [
-    "linux"
+    "Rust"
   ],
   "keywords": [
     "rust",
     "rustup",
-    "cargo"
+    "cargo",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

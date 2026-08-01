@@ -1,6 +1,6 @@
 {
   "id": "zig",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "name": "Zig",
   "description": "Security-focused Zig dev container with zls integration and a persistent build cache.",
   "publisher": "Bare Dev Container Maintainers",
@@ -9,7 +9,7 @@
   "options": {
     "imageVariant": {
       "type": "string",
-      "description": "Zig version and Debian version",
+      "description": "Zig and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
       "proposals": [
         "0.16-trixie",
         "0.16-bookworm",
@@ -20,9 +20,12 @@
     }
   },
   "platforms": [
-    "linux"
+    "Zig"
   ],
   "keywords": [
-    "zig"
+    "zig",
+    "security",
+    "hardened",
+    "non-root"
   ]
 }

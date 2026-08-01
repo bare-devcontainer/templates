@@ -2,7 +2,7 @@
 // Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/uv
 // What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
 {
-  "name": "uv",
+  "name": "Python (uv)",
   // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/uv:trixie@sha256:<digest>").
   // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
   "image": "ghcr.io/bare-devcontainer/uv:${templateOption:imageVariant}",

@@ -22,17 +22,24 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Check description length (max 88 chars)
+      - name: Check description length (template max 88, option max 120)
         run: |
           failed=0
-          while IFS= read -r file; do
-            desc=$(jq -r '.description' "$file")
-            len=${#desc}
-            if [[ $len -gt 88 ]]; then
-              echo "FAIL ($len chars): $file"
+          check() {
+            local file=$1 field=$2 max=$3 desc=$4
+            local len=${#desc}
+            if [[ $len -gt $max ]]; then
+              echo "FAIL ($len chars, max $max): $file $field"
               echo "  $desc"
               failed=1
             fi
+          }
+          while IFS= read -r file; do
+            check "$file" ".description" 88 "$(jq -r '.description // ""' "$file")"
+            while IFS= read -r option; do
+              check "$file" ".options.${option}.description" 120 \
+                "$(jq -r --arg o "$option" '.options[$o].description // ""' "$file")"
+            done < <(jq -r '.options // {} | keys[]' "$file")
           done < <(find src -name devcontainer-template.json | sort)
           exit $failed
 

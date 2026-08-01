@@ -1,17 +1,23 @@
 
 # Terraform (terraform)
 
-Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching.
+Security-focused Terraform dev container with terraform-ls and a plugin cache volume.
 
 ## Options
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| imageVariant | Terraform version and Debian version | string | 1-trixie |
+| imageVariant | Terraform and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | 1-trixie |
 
 ## Getting Started
 
 See [Getting Started](https://github.com/bare-devcontainer/templates#getting-started) in the repository README for how to apply this template.
+
+## Image Variants
+
+The `imageVariant` option selects the tag of the `ghcr.io/bare-devcontainer/terraform` base image, which pairs a Terraform version with a Debian release: `trixie` is Debian 13 and `bookworm` is Debian 12.
+
+The values offered when applying the template are proposals, not a closed list — any published tag can be entered, including narrower ones such as a Terraform patch version or a dated build for tighter pinning. See the [published tags](https://github.com/orgs/bare-devcontainer/packages/container/package/terraform) for what is currently available.
 
 ## Security Hardening
 

@@ -7,11 +7,17 @@ Security-focused Go dev container with hardened defaults and rebuild-friendly ca
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| imageVariant | Go version and Debian version | string | 1.26-trixie |
+| imageVariant | Go and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | 1.26-trixie |
 
 ## Getting Started
 
 See [Getting Started](https://github.com/bare-devcontainer/templates#getting-started) in the repository README for how to apply this template.
+
+## Image Variants
+
+The `imageVariant` option selects the tag of the `ghcr.io/bare-devcontainer/golang` base image, which pairs a Go version with a Debian release: `trixie` is Debian 13 and `bookworm` is Debian 12.
+
+The values offered when applying the template are proposals, not a closed list — any published tag can be entered, including narrower ones such as a Go patch version or a dated build for tighter pinning. See the [published tags](https://github.com/orgs/bare-devcontainer/packages/container/package/golang) for what is currently available.
 
 ## Security Hardening
 

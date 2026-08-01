@@ -18,14 +18,14 @@ Each template targets a single toolchain and corresponds to one `ghcr.io/bare-de
 | Template | Registry | Description |
 |----------|----------|-------------|
 | [Bun](src/bun) | `ghcr.io/bare-devcontainer/templates/bun` | Security-focused Bun dev container for JS/TS with hardened defaults and cached installs. |
-| [Debian](src/debian) | `ghcr.io/bare-devcontainer/templates/debian` | Security-focused minimal Debian base for any stack, with hardened container defaults. |
+| [Debian](src/debian) | `ghcr.io/bare-devcontainer/templates/debian` | Security-focused minimal Debian base for any stack, with hardened, non-root defaults. |
 | [Deno](src/deno) | `ghcr.io/bare-devcontainer/templates/deno` | Security-focused Deno dev container for JS/TS with hardened defaults and cached modules. |
 | [Go](src/golang) | `ghcr.io/bare-devcontainer/templates/golang` | Security-focused Go dev container with hardened defaults and rebuild-friendly caches. |
-| [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | Security-focused mise dev container for multiple runtimes, with rebuild-friendly caches. |
-| [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | Security-focused Node.js dev container for JS/TS with hardened, non-root defaults. |
+| [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | Security-focused mise dev container for multiple runtimes, with cached tool installs. |
+| [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | Security-focused Node.js dev container for JS/TS with non-root defaults and Corepack. |
 | [Rust](src/rustup) | `ghcr.io/bare-devcontainer/templates/rustup` | Security-focused Rust dev container with rust-analyzer and persistent Cargo caches. |
-| [Terraform](src/terraform) | `ghcr.io/bare-devcontainer/templates/terraform` | Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching. |
-| [uv](src/uv) | `ghcr.io/bare-devcontainer/templates/uv` | Security-focused Python dev container with uv, hardened defaults, and cached packages. |
+| [Terraform](src/terraform) | `ghcr.io/bare-devcontainer/templates/terraform` | Security-focused Terraform dev container with terraform-ls and a plugin cache volume. |
+| [Python (uv)](src/uv) | `ghcr.io/bare-devcontainer/templates/uv` | Security-focused Python dev container with uv, hardened defaults, and cached packages. |
 | [Zig](src/zig) | `ghcr.io/bare-devcontainer/templates/zig` | Security-focused Zig dev container with zls integration and a persistent build cache. |
 
 Each template page documents its options, security defaults, persisted caches, and editor integration.
@@ -55,7 +55,7 @@ Applying a template writes a `.devcontainer/devcontainer.json` into your project
 
 ```json
 {
-  "name": "uv",
+  "name": "Python (uv)",
   "image": "ghcr.io/bare-devcontainer/uv:trixie",
   "remoteUser": "dev",
   "runArgs": ["--cap-drop=ALL"],
