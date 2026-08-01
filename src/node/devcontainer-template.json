@@ -1,6 +1,6 @@
 {
   "id": "node",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "name": "Node.js",
   "description": "Security-focused Node.js dev container for JS/TS with hardened, non-root defaults.",
   "publisher": "Bare Dev Container Maintainers",
@@ -20,7 +20,7 @@
     }
   },
   "platforms": [
-    "linux"
+    "Node.js"
   ],
   "keywords": [
     "node",

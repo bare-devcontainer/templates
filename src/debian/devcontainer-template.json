@@ -1,6 +1,6 @@
 {
   "id": "debian",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "name": "Debian",
   "description": "Security-focused minimal Debian base for any stack, with hardened container defaults.",
   "publisher": "Bare Dev Container Maintainers",
@@ -18,7 +18,7 @@
     }
   },
   "platforms": [
-    "linux"
+    "Any"
   ],
   "keywords": [
     "debian",

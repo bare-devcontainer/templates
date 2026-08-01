@@ -1,6 +1,6 @@
 {
   "id": "terraform",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "name": "Terraform",
   "description": "Security-focused Terraform dev container with terraform-ls and rebuild-friendly caching.",
   "publisher": "Bare Dev Container Maintainers",
@@ -18,7 +18,7 @@
     }
   },
   "platforms": [
-    "linux"
+    "Terraform"
   ],
   "keywords": [
     "terraform",

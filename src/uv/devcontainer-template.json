@@ -1,6 +1,6 @@
 {
   "id": "uv",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "name": "Python (uv)",
   "description": "Security-focused Python dev container with uv, hardened defaults, and cached packages.",
   "publisher": "Bare Dev Container Maintainers",
@@ -18,7 +18,7 @@
     }
   },
   "platforms": [
-    "linux"
+    "Python"
   ],
   "keywords": [
     "uv",
