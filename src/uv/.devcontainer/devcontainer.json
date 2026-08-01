@@ -11,6 +11,11 @@
   // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
   "securityOpt": ["no-new-privileges"],
   "init": true,
+  "containerEnv": {
+    // The cache volume and the workspace are different filesystems, so hardlinking would fail.
+    // See https://github.com/bare-devcontainer/templates/tree/main/src/uv#persistent-caches
+    "UV_LINK_MODE": "copy"
+  },
   // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
   // "remoteEnv": {
   //   "VISUAL": "code --wait",
