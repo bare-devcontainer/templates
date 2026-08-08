@@ -40,7 +40,8 @@ The Terraform plugin cache directory is persisted in a named volume, so rebuildi
 
 ## Editor Integration
 
-- Installs the `hashicorp.terraform` and `hashicorp.hcl` VS Code extensions, with the language server paths preconfigured to the `terraform-ls` and `terraform` binaries shipped in the image, and format-on-save enabled for `.tf` and `.tfvars` files.
+- Installs the `hashicorp.terraform` and `hashicorp.hcl` VS Code extensions, with the language server paths preconfigured to the `terraform-ls` and `terraform` binaries shipped in the image.
+- Applies the [formatting settings recommended by the Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform), so every Terraform language mode formats on save.
 
 ## Tips
 
