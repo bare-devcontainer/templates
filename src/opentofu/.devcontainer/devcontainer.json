@@ -1,0 +1,47 @@
+// Created from the "opentofu" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/opentofu
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
+{
+  "name": "OpenTofu",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/opentofu:1-trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
+  "image": "ghcr.io/bare-devcontainer/opentofu:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "runArgs": ["--cap-drop=ALL"],
+  // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
+  "securityOpt": ["no-new-privileges"],
+  "init": true,
+  // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
+  // "remoteEnv": {
+  //   "VISUAL": "code --wait",
+  //   "EDITOR": "code --wait",
+  //   "GIT_EDITOR": "code --wait"
+  // },
+  "mounts": [
+    // Persist the OpenTofu provider plugin cache across container rebuilds.
+    {
+      "source": "${devcontainerId}-opentofu-plugin-cache",
+      "target": "/home/dev/.terraform.d/plugin-cache",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "opentofu.vscode-opentofu",
+        "hashicorp.hcl"
+      ],
+      "settings": {
+        "opentofu.languageServer.path": "/usr/local/bin/tofu-ls",
+        "opentofu.languageServer.tofu.path": "/usr/local/bin/tofu",
+        // Formatting settings recommended by the OpenTofu extension:
+        // https://github.com/opentofu/vscode-opentofu#formatting
+        "[opentofu][opentofu-vars]": {
+          "editor.defaultFormatter": "opentofu.vscode-opentofu",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file"
+        }
+      }
+    }
+  }
+}
