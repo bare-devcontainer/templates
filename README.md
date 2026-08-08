@@ -23,6 +23,7 @@ Each template targets a single toolchain and corresponds to one `ghcr.io/bare-de
 | [Go](src/golang) | `ghcr.io/bare-devcontainer/templates/golang` | Security-focused Go dev container with hardened defaults and rebuild-friendly caches. |
 | [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | Security-focused mise dev container for multiple runtimes, with cached tool installs. |
 | [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | Security-focused Node.js dev container for JS/TS with non-root defaults and Corepack. |
+| [OpenTofu](src/opentofu) | `ghcr.io/bare-devcontainer/templates/opentofu` | Security-focused OpenTofu dev container with tofu-ls and a plugin cache volume. |
 | [Rust](src/rustup) | `ghcr.io/bare-devcontainer/templates/rustup` | Security-focused Rust dev container with rust-analyzer and persistent Cargo caches. |
 | [Terraform](src/terraform) | `ghcr.io/bare-devcontainer/templates/terraform` | Security-focused Terraform dev container with terraform-ls and a plugin cache volume. |
 | [Python (uv)](src/uv) | `ghcr.io/bare-devcontainer/templates/uv` | Security-focused Python dev container with uv, hardened defaults, and cached packages. |
