@@ -34,6 +34,8 @@
       "settings": {
         "terraform.languageServer.path": "/usr/local/bin/terraform-ls",
         "terraform.languageServer.terraform.path": "/usr/local/bin/terraform",
+        // Formatting settings recommended by the Terraform extension:
+        // https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform
         "[terraform]": {
           "editor.defaultFormatter": "hashicorp.terraform",
           "editor.formatOnSave": true,
