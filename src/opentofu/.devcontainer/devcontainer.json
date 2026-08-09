@@ -42,6 +42,11 @@
           "editor.formatOnSaveMode": "file"
         }
       }
+    },
+    "zed": {
+      "extensions": [
+        "opentofu"
+      ]
     }
   }
 }

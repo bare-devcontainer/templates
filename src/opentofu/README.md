@@ -41,6 +41,7 @@ The OpenTofu plugin cache directory is persisted in a named volume, so rebuildin
 ## Editor Integration
 
 - Installs the `opentofu.vscode-opentofu` and `hashicorp.hcl` VS Code extensions, with the language server paths preconfigured to the `tofu-ls` and `tofu` binaries shipped in the image, and format-on-save enabled for `.tf` and `.tfvars` files.
+- Installs the [`opentofu`](https://github.com/tzabbi/zed-opentofu) Zed extension, which resolves `tofu-ls` from the image's `PATH` instead of downloading its own. Unlike the VS Code extension, this one is community-maintained rather than published by the OpenTofu project.
 
 ## Tips
 

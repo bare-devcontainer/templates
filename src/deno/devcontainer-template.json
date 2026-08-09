@@ -1,6 +1,6 @@
 {
   "id": "deno",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "Deno",
   "description": "Security-focused Deno dev container for JS/TS with hardened defaults and cached modules.",
   "publisher": "Bare Dev Container Maintainers",

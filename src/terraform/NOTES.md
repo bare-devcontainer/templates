@@ -31,6 +31,7 @@ The Terraform plugin cache directory is persisted in a named volume, so rebuildi
 
 - Installs the `hashicorp.terraform` and `hashicorp.hcl` VS Code extensions, with the language server paths preconfigured to the `terraform-ls` and `terraform` binaries shipped in the image.
 - Applies the [formatting settings recommended by the Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform), so every Terraform language mode formats on save.
+- Installs the [`terraform`](https://github.com/zed-extensions/terraform) Zed extension, which resolves `terraform-ls` from the image's `PATH` instead of downloading its own. Unlike the VS Code extension, this one is community-maintained rather than published by HashiCorp.
 
 ## Tips
 

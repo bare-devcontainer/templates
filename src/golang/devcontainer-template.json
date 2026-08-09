@@ -1,6 +1,6 @@
 {
   "id": "golang",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "name": "Go",
   "description": "Security-focused Go dev container with hardened defaults and rebuild-friendly caches.",
   "publisher": "Bare Dev Container Maintainers",

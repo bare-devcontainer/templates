@@ -30,6 +30,7 @@ Deno's cache directory (`DENO_DIR`) is persisted in a named volume, so rebuildin
 ## Editor Integration
 
 - Installs the `denoland.vscode-deno` VS Code extension with `deno.enable` turned on for the workspace, and `deno.path` preconfigured to the Deno binary shipped in the image (`/usr/local/bin/deno`).
+- Installs the [`deno`](https://github.com/zed-extensions/deno) Zed extension, which resolves the Deno binary from the image's `PATH` instead of downloading its own. The bundled `.zed/settings.json` enables the Deno language server and turns off Zed's default TypeScript servers so they do not compete with it. Unlike the VS Code extension, this one is community-maintained rather than published by Deno.
 
 ## Tips
 

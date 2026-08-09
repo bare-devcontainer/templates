@@ -43,6 +43,7 @@ The Go module and build caches are persisted in named volumes, so rebuilding the
 
 - Installs the `golang.go` VS Code extension, with format-on-save and organize-imports enabled for Go files and gopls semantic tokens turned on.
 - Automatic updates of the Go tools are disabled (`go.toolsManagement.autoUpdate: false`, update checks are local only), so the editor does not download tools behind your back.
+- Zed needs no extension for Go and resolves `gopls` from the image's `PATH` instead of downloading its own. The bundled `.zed/settings.json` runs organize-imports on format, matching the VS Code settings above.
 
 ## Tips
 

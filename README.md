@@ -9,7 +9,7 @@ Development containers are part of the trusted development environment, yet unve
 - **Supply-chain security** — built on [Bare Dev Container Images], which limit trusted upstreams to official sources to minimize supply-chain risk.
 - **Security hardening** — each template follows container security best practices such as running as a non-root user and restricting container privileges, minimizing the attack surface of the development environment.
 - **Fast, frequent rebuilds** — each toolchain's primary cache directories are persisted as volumes, so rebuilding to pick up security updates doesn't require re-downloading or recompiling dependencies.
-- **Out-of-the-box editor support** — compilers/toolchains are paired with the relevant LSP and official VS Code extensions/settings, so the environment is ready to use immediately.
+- **Out-of-the-box editor support** — compilers/toolchains are paired with the relevant LSP and with editor extensions/settings for VS Code and Zed, so the environment is ready to use immediately.
 
 ## Templates
 
@@ -52,7 +52,7 @@ Replace `<template-name>` with one of the names from the [Templates](#templates)
 
 ## What You Get
 
-Applying a template writes a `.devcontainer/devcontainer.json` into your project — nothing else is installed, and there is no runtime dependency on this repository. For example, the uv template produces (comments and editor settings trimmed):
+Applying a template writes a `.devcontainer/devcontainer.json` into your project, plus a small editor config file for some templates — nothing else is installed, and there is no runtime dependency on this repository. For example, the uv template produces (comments and editor settings trimmed):
 
 ```json
 {
@@ -82,7 +82,7 @@ Each part maps to one of the goals above:
 - `image` references a base image from [Bare Dev Container Images], a separate repository that builds minimal images with pinned digests, SLSA provenance, and an SPDX SBOM. This repository ships configuration only; what is installed inside the container is documented there.
 - `remoteUser`, `runArgs`, `securityOpt`, and `init` are the shared hardening defaults, applied identically by every template.
 - `mounts` persists the toolchain's cache directories in named volumes, so rebuilding to pick up an image update doesn't re-download dependencies.
-- `customizations` pairs the toolchain with the relevant extensions and settings, so the editor is ready to use on first open.
+- `customizations` pairs the toolchain with the relevant VS Code extensions and settings, so the editor is ready to use on first open. Zed reads its own `customizations.zed` namespace, which only carries extensions, so templates that need Zed settings ship a `.zed/settings.json` alongside.
 
 The generated file is yours to edit — it is a plain dev container configuration, so you can layer [Features](https://containers.dev/features), add mounts, or relax any of the defaults.
 

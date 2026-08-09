@@ -1,6 +1,6 @@
 {
   "id": "terraform",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "name": "Terraform",
   "description": "Security-focused Terraform dev container with terraform-ls and a plugin cache volume.",
   "publisher": "Bare Dev Container Maintainers",

@@ -53,6 +53,7 @@ The cache volume and the bind-mounted workspace folder are different filesystems
 ## Editor Integration
 
 - Installs the `ms-python.python` and `charliermarsh.ruff` VS Code extensions, with Ruff as the default formatter and fix-all/organize-imports run on save for Python files.
+- Zed needs no extension for Python — basedpyright and Ruff are built in. The bundled `.zed/settings.json` makes Ruff the formatter and runs fix-all/organize-imports on format, matching the VS Code settings above.
 
 ## Tips
 

@@ -80,6 +80,11 @@
           "editor.formatOnSaveMode": "file"
         }
       }
+    },
+    "zed": {
+      "extensions": [
+        "terraform"
+      ]
     }
   }
 }

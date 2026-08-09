@@ -30,6 +30,7 @@ The Zig global cache is persisted in a named volume, so rebuilding the container
 ## Editor Integration
 
 - Installs the `ziglang.vscode-zig` VS Code extension, with the `zig` and `zls` paths preconfigured to the binaries shipped in the image and the Zig Language Server (zls) enabled.
+- Installs the [`zig`](https://github.com/zed-extensions/zig) Zed extension, which resolves `zls` from the image's `PATH` instead of downloading its own. Unlike the VS Code extension, this one is community-maintained rather than published by the Zig project.
 
 ## Tips
 

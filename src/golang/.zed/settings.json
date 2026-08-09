@@ -1,0 +1,9 @@
+{
+  "languages": {
+    "Go": {
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    }
+  }
+}
