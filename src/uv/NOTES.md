@@ -42,6 +42,8 @@ The cache volume and the bind-mounted workspace folder are different filesystems
 ## Editor Integration
 
 - Installs the `ms-python.python` and `charliermarsh.ruff` VS Code extensions, with Ruff as the default formatter and fix-all/organize-imports run on save for Python files.
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in. Microsoft does not publish `ms-python.python` there, so on those editors install it another way or replace it with an open-source Python language server.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. No Python language server is preinstalled — install one per project with uv, for example `uv tool install ruff` (its `ruff server` speaks LSP); tools installed this way land in `/home/dev/.local/bin`, which is on `PATH`.
 
 ## Tips
 

@@ -31,6 +31,8 @@ The Terraform plugin cache directory is persisted in a named volume, so rebuildi
 
 - Installs the `hashicorp.terraform` and `hashicorp.hcl` VS Code extensions, with the language server paths preconfigured to the `terraform-ls` and `terraform` binaries shipped in the image.
 - Applies the [formatting settings recommended by the Terraform extension](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform), so every Terraform language mode formats on save.
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly: `terraform-ls` at `/usr/local/bin/terraform-ls` and `terraform` at `/usr/local/bin/terraform`.
 
 ## Tips
 

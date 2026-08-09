@@ -41,6 +41,8 @@ The Zig global cache is persisted in a named volume, so rebuilding the container
 ## Editor Integration
 
 - Installs the `ziglang.vscode-zig` VS Code extension, with the `zig` and `zls` paths preconfigured to the binaries shipped in the image and the Zig Language Server (zls) enabled.
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly: `zls` at `/usr/local/bin/zls` and `zig` at `/usr/local/zig/zig`.
 
 ## Tips
 

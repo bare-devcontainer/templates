@@ -32,6 +32,8 @@ The Go module and build caches are persisted in named volumes, so rebuilding the
 
 - Installs the `golang.go` VS Code extension, with format-on-save and organize-imports enabled for Go files and gopls semantic tokens turned on.
 - Automatic updates of the Go tools are disabled (`go.toolsManagement.autoUpdate: false`, update checks are local only), so the editor does not download tools behind your back.
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly: `gopls` at `/usr/local/bin/gopls`, and the Go toolchain at `/usr/local/go/bin`.
 
 ## Tips
 

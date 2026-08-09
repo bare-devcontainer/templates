@@ -1,6 +1,6 @@
 {
   "id": "rustup",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "name": "Rust",
   "description": "Security-focused Rust dev container with rust-analyzer and persistent Cargo caches.",
   "publisher": "Bare Dev Container Maintainers",

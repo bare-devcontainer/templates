@@ -1,6 +1,6 @@
 {
   "id": "opentofu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "OpenTofu",
   "description": "Security-focused OpenTofu dev container with tofu-ls and a plugin cache volume.",
   "publisher": "Bare Dev Container Maintainers",
