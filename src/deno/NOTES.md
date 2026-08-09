@@ -30,6 +30,8 @@ Deno's cache directory (`DENO_DIR`) is persisted in a named volume, so rebuildin
 ## Editor Integration
 
 - Installs the `denoland.vscode-deno` VS Code extension with `deno.enable` turned on for the workspace, and `deno.path` preconfigured to the Deno binary shipped in the image (`/usr/local/bin/deno`).
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and start the language server directly: `deno lsp`, from the `/usr/local/bin/deno` binary shipped in the image.
 
 ## Tips
 

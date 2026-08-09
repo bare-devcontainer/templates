@@ -30,6 +30,8 @@ Bun's global install cache is persisted in a named volume, so rebuilding the con
 ## Editor Integration
 
 - Installs the `oven.bun-vscode` VS Code extension, with `bun.runtime` preconfigured to the Bun binary shipped in the image (`/usr/local/bin/bun`).
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. Bun ships no language server of its own, so TypeScript intelligence comes from a per-project `typescript-language-server` (`bun add -d typescript typescript-language-server`); `bun` itself is at `/usr/local/bin/bun`.
 
 ## Tips
 

@@ -44,6 +44,8 @@ Only `registry/` and `git/` are mounted; `~/.cargo/bin` is intentionally left in
 ## Editor Integration
 
 - Installs the `rust-lang.rust-analyzer` VS Code extension, with format-on-save enabled for Rust files.
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. The image ships only `rustup`, so add the language server to the toolchain first with `rustup component add rust-analyzer`; it then resolves through `/home/dev/.cargo/bin`, which is on `PATH`.
 
 ## Tips
 

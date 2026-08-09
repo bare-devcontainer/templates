@@ -41,6 +41,8 @@ The OpenTofu plugin cache directory is persisted in a named volume, so rebuildin
 ## Editor Integration
 
 - Installs the `opentofu.vscode-opentofu` and `hashicorp.hcl` VS Code extensions, with the language server paths preconfigured to the `tofu-ls` and `tofu` binaries shipped in the image, and format-on-save enabled for `.tf` and `.tfvars` files.
+- Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly: `tofu-ls` at `/usr/local/bin/tofu-ls` and `tofu` at `/usr/local/bin/tofu`.
 
 ## Tips
 
