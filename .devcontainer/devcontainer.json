@@ -9,6 +9,13 @@
   "securityOpt": [
     "no-new-privileges"
   ],
+  "mounts": [
+    {
+      "source": "${devcontainerId}-claude-code-cache",
+      "target": "/home/dev/.claude",
+      "type": "volume"
+    }
+  ],
   "remoteEnv": {
     "EDITOR": "code --wait",
     "VISUAL": "code --wait"
