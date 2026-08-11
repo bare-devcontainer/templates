@@ -3,18 +3,14 @@
   "build": {
     "dockerfile": "./Dockerfile"
   },
+  "features": {
+    "ghcr.io/bare-devcontainer/features/claude-code:1.1.0": {}
+  },
   "runArgs": [
     "--cap-drop=ALL"
   ],
   "securityOpt": [
     "no-new-privileges"
-  ],
-  "mounts": [
-    {
-      "source": "${devcontainerId}-claude-code-cache",
-      "target": "/home/dev/.claude",
-      "type": "volume"
-    }
   ],
   "remoteEnv": {
     "EDITOR": "code --wait",
