@@ -4,20 +4,25 @@
 # The bare pnpm image ships pnpm only; Node.js runtimes are installed by pnpm.
 pnpm --version
 
-# Both mounted volumes must be writable, and the store must live inside the one at
-# PNPM_HOME — that is what makes it survive a rebuild.
+# Both mount targets must be writable, since everything below is written into them.
 test "$PNPM_HOME" = "$HOME/.local/share/pnpm"
 test -w "$PNPM_HOME"
 test -w "$HOME/.cache/pnpm"
-case "$(pnpm store path)" in
-  "$PNPM_HOME"/*) ;;
-  *) echo "pnpm store is not under PNPM_HOME" >&2; exit 1 ;;
-esac
 
-# Install a runtime into the mounted volume to prove the manager works end to end.
+# pnpm places its store wherever hard links work, so where it lands depends on the
+# filesystems in play rather than on this template. Record it instead of asserting it.
+echo "pnpm store path: $(pnpm store path)"
+
+# The runtime is the expensive thing the PNPM_HOME volume exists to keep, so it has to
+# land inside that volume rather than in a container layer thrown away on rebuild.
 pnpm runtime set node lts -g
 node --version
 node -e 'console.log("ok")'
+node_bin="$(command -v node)"
+case "$node_bin" in
+  "$PNPM_HOME"/*) ;;
+  *) echo "node resolved outside the persisted volume: $node_bin" >&2; exit 1 ;;
+esac
 
 # Install and run a dependency, to prove pnpm drives a project with the volumes in place.
 # The dependency is authored here rather than pulled from the registry, to keep this smoke
@@ -45,4 +50,5 @@ JSON
 
 cd "$SMOKE_TMP/project" || exit 1
 pnpm add ../greeter
-test "$(pnpm exec greeter)" = "ok"
+greeting="$(pnpm exec greeter)"
+test "$greeting" = "ok" || { echo "unexpected output: $greeting" >&2; exit 1; }

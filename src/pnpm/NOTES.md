@@ -47,14 +47,14 @@ Both the runtime and the dependencies are installed by `pnpm install`. To have t
 
 ## Persistent Caches
 
-pnpm's home directory and metadata cache are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading runtimes or packages:
+pnpm's home directory and metadata cache are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading the runtimes and packages pnpm keeps there:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
-| `${devcontainerId}-pnpm-home` | `/home/dev/.local/share/pnpm` | The pnpm store, pnpm-managed runtimes, and globally installed bins |
+| `${devcontainerId}-pnpm-home` | `/home/dev/.local/share/pnpm` | pnpm-managed runtimes, globally installed bins, and the package store when pnpm places it here |
 | `${devcontainerId}-pnpm-cache` | `/home/dev/.cache/pnpm` | pnpm's metadata cache |
 
-The store therefore lives on a different filesystem than the workspace, so pnpm cannot hardlink packages into `node_modules` and copies them instead. That is the same trade-off as a workspace bind-mounted from the host, and pnpm's default [`packageImportMethod`](https://pnpm.io/settings/node-modules#packageimportmethod) of `auto` falls back to copying on its own — installs still work, they just don't share inodes with the store.
+Where the package store itself ends up is pnpm's decision rather than this template's. pnpm keeps it at `$PNPM_HOME/store` when it can hard-link from the workspace into that directory, and otherwise puts it on the workspace's own filesystem, because [hard links only work within one filesystem](https://pnpm.io/settings/store#storedir) and there is one store per disk. In a dev container the workspace is usually bind-mounted from the host while the volume above is not, so the two are often on different filesystems. `pnpm store path` reports which applies to your setup. Installs succeed either way — pnpm's default [`packageImportMethod`](https://pnpm.io/settings/node-modules#packageimportmethod) of `auto` falls back to copying when it cannot link — and the runtimes and global bins, the expensive part to re-download, stay in the volume regardless.
 
 ## Editor Integration
 
