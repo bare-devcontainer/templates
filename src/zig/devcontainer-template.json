@@ -1,6 +1,6 @@
 {
   "id": "zig",
-  "version": "1.2.8",
+  "version": "1.3.0",
   "name": "Zig",
   "description": "Security-focused Zig dev container with zls integration and a persistent build cache.",
   "publisher": "Bare Dev Container Maintainers",
@@ -14,7 +14,8 @@
         "0.16-trixie",
         "0.16-bookworm",
         "0.15-trixie",
-        "0.15-bookworm"
+        "0.15-bookworm",
+        "master-trixie"
       ],
       "default": "0.16-trixie"
     }

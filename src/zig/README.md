@@ -17,6 +17,8 @@ See [Getting Started](https://github.com/bare-devcontainer/templates#getting-sta
 
 The `imageVariant` option selects the tag of the `ghcr.io/bare-devcontainer/zig` base image, which pairs a Zig version with a Debian release: `trixie` is Debian 13 and `bookworm` is Debian 12.
 
+`master-trixie` tracks Zig's master branch rather than a release: it carries the master build ziglang.org currently publishes together with the matching zls build, is refreshed daily, and is published for `trixie` only. An unpinned master tag therefore moves under you, so pin the image to a digest when you need a reproducible toolchain.
+
 The values offered when applying the template are proposals, not a closed list — any published tag can be entered, including narrower ones such as a Zig patch version or a dated build for tighter pinning. See the [published tags](https://github.com/orgs/bare-devcontainer/packages/container/package/zig) for what is currently available.
 
 ## Security Hardening
