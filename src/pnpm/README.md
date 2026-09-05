@@ -62,10 +62,12 @@ pnpm's home directory and metadata cache are persisted in named volumes, so rebu
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
-| `${devcontainerId}-pnpm-home` | `/home/dev/.local/share/pnpm` | pnpm-managed runtimes, globally installed bins, and the package store when pnpm places it here |
+| `${devcontainerId}-pnpm-home` | `/home/dev/.local/share/pnpm` | pnpm-managed runtimes, globally installed bins, and the store they are linked from |
 | `${devcontainerId}-pnpm-cache` | `/home/dev/.cache/pnpm` | pnpm's metadata cache |
 
-Where the package store itself ends up is pnpm's decision rather than this template's. pnpm keeps it at `$PNPM_HOME/store` when it can hard-link from the workspace into that directory, and otherwise puts it on the workspace's own filesystem, because [hard links only work within one filesystem](https://pnpm.io/settings/store#storedir) and there is one store per disk. In a dev container the workspace is usually bind-mounted from the host while the volume above is not, so the two are often on different filesystems. `pnpm store path` reports which applies to your setup. Installs succeed either way — pnpm's default [`packageImportMethod`](https://pnpm.io/settings/node-modules#packageimportmethod) of `auto` falls back to copying when it cannot link — and the runtimes and global bins, the expensive part to re-download, stay in the volume regardless.
+Where a package store lands is pnpm's decision rather than this template's, because [there is one store per disk](https://pnpm.io/settings/store#storedir) and hard links only work within a single filesystem. Global installs — the pnpm-managed runtimes and anything added with `pnpm add -g` — live on the volume above, so they are linked from the store at `$PNPM_HOME/store` and persist with it. A project in the workspace is usually on a different filesystem, bind-mounted from the host, so pnpm keeps that project's store beside it in `node_modules/.pnpm-store` and hard-links from there instead. `pnpm store path` reports the one in effect where you run it.
+
+The consequence worth knowing is that deleting a project's `node_modules` deletes that project's store with it, so the next install re-downloads its packages. The runtimes and global bins are unaffected: they stay in the volume.
 
 ## Editor Integration
 
