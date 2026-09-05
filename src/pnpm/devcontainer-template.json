@@ -1,0 +1,38 @@
+{
+  "id": "pnpm",
+  "version": "1.0.0",
+  "name": "Node.js (pnpm)",
+  "description": "Security-focused pnpm dev container for JS/TS with pnpm-managed Node.js and caches.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/pnpm",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "pnpm and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
+      "proposals": [
+        "12-trixie",
+        "12-bookworm"
+      ],
+      "default": "12-trixie"
+    }
+  },
+  "platforms": [
+    "Node.js",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "keywords": [
+    "pnpm",
+    "node",
+    "nodejs",
+    "javascript",
+    "js",
+    "typescript",
+    "ts",
+    "package-manager",
+    "security",
+    "hardened",
+    "non-root"
+  ]
+}
