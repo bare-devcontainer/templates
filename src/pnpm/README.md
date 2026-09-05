@@ -34,15 +34,7 @@ After applying the template, we recommend pinning the image to a digest so every
 
 [pnpm](https://pnpm.io/) is the only JavaScript tooling in the image: there is no Node.js runtime, no `npm`/`npx`, and no Corepack. pnpm installs the runtime instead, so the version in use is the one the project asks for rather than the one that happened to be baked into the image. For a project whose package manager is not pnpm, use the [Node.js](https://github.com/bare-devcontainer/templates/tree/main/src/node) template instead.
 
-The image ships no `node`, and `$PNPM_HOME/bin` — where pnpm puts global binaries — starts empty, so a new container needs one global install before `node` exists at all:
-
-```sh
-pnpm runtime set node lts -g
-```
-
-That is what puts `node` on `PATH`. It is a one-time step: the runtime lands in the persisted volume below, so later rebuilds of the same container already have it.
-
-With that done, pin the runtime per project in its `package.json`, and pnpm installs that version on first use:
+Pin the runtime per project in its `package.json`:
 
 ```json
 {
@@ -52,9 +44,17 @@ With that done, pin the runtime per project in its `package.json`, and pnpm inst
 }
 ```
 
-Inside such a project a bare `node` then runs the pinned version rather than the global one, because pnpm's global `node` is a [shim](https://pnpm.io/settings/other#globalshims) that dispatches to whatever the current project asks for. Outside any project it runs the globally installed version, which [`pnpm runtime`](https://pnpm.io/cli/runtime) sets.
+`pnpm install` then resolves that range, records the exact version in the lockfile, and downloads it, so scripts run with `pnpm run` use the pinned runtime. Nothing else is needed to build or test the project.
 
-`pnpm install` installs the pinned runtime along with the dependencies. To have that happen when the container is created rather than on first use, add it to `devcontainer.json`:
+What that does not give you is a bare `node` command. The `node` that dispatches to a project's pin is a [shim](https://pnpm.io/settings/other#globalshims) written into `$PNPM_HOME/bin` when a runtime is installed *globally*, and this image starts with that directory empty. So if you want to type `node` directly, install one globally, once:
+
+```sh
+pnpm runtime set node lts -g
+```
+
+From then on a bare `node` inside a project runs the version that project pins, and outside any project the globally installed one. That global runtime lands in the persisted volume below, so later rebuilds of the same container already have it.
+
+To install the pinned runtime and the dependencies when the container is created rather than on first use, add `pnpm install` to `devcontainer.json`:
 
 ```json
 "postCreateCommand": "pnpm install"
