@@ -1,0 +1,44 @@
+// Created from the "pnpm" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/pnpm
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
+{
+  "name": "Node.js (pnpm)",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/pnpm:12-trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
+  "image": "ghcr.io/bare-devcontainer/pnpm:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "runArgs": ["--cap-drop=ALL"],
+  // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
+  "securityOpt": ["no-new-privileges"],
+  "init": true,
+  // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
+  // "remoteEnv": {
+  //   "VISUAL": "code --wait",
+  //   "EDITOR": "code --wait",
+  //   "GIT_EDITOR": "code --wait"
+  // },
+  "mounts": [
+    // Persist the pnpm store, the pnpm-managed runtimes, and globally installed bins across
+    // rebuilds to avoid re-downloading all of them.
+    {
+      "source": "${devcontainerId}-pnpm-home",
+      "target": "/home/dev/.local/share/pnpm",
+      "type": "volume"
+    },
+    // Persist pnpm's metadata cache across rebuilds.
+    {
+      "source": "${devcontainerId}-pnpm-cache",
+      "target": "/home/dev/.cache/pnpm",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Run package.json scripts and dependency installs with pnpm rather than letting
+        // VS Code guess a package manager from the lockfiles present.
+        "npm.packageManager": "pnpm"
+      }
+    }
+  }
+}
