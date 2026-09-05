@@ -23,7 +23,15 @@ After applying the template, we recommend pinning the image to a digest so every
 
 [pnpm](https://pnpm.io/) is the only JavaScript tooling in the image: there is no Node.js runtime, no `npm`/`npx`, and no Corepack. pnpm installs the runtime instead, so the version in use is the one the project asks for rather than the one that happened to be baked into the image. For a project whose package manager is not pnpm, use the [Node.js](https://github.com/bare-devcontainer/templates/tree/main/src/node) template instead.
 
-Declare the runtime in the project's `package.json` and pnpm installs it on first use:
+The image ships no `node`, and `$PNPM_HOME/bin` — where pnpm puts global binaries — starts empty, so a new container needs one global install before `node` exists at all:
+
+```sh
+pnpm runtime set node lts -g
+```
+
+That is what puts `node` on `PATH`. It is a one-time step: the runtime lands in the persisted volume below, so later rebuilds of the same container already have it.
+
+With that done, pin the runtime per project in its `package.json`, and pnpm installs that version on first use:
 
 ```json
 {
@@ -33,13 +41,9 @@ Declare the runtime in the project's `package.json` and pnpm installs it on firs
 }
 ```
 
-Inside that project a bare `node` runs the pinned version, because pnpm's global `node` is a shim that dispatches to what the project asks for. Outside any project it runs the globally installed version, which is set with [`pnpm runtime`](https://pnpm.io/cli/runtime):
+Inside such a project a bare `node` then runs the pinned version rather than the global one, because pnpm's global `node` is a [shim](https://pnpm.io/settings/other#globalshims) that dispatches to whatever the current project asks for. Outside any project it runs the globally installed version, which [`pnpm runtime`](https://pnpm.io/cli/runtime) sets.
 
-```sh
-pnpm runtime set node lts -g
-```
-
-Both the runtime and the dependencies are installed by `pnpm install`. To have that happen when the container is created rather than on first use, add it to `devcontainer.json`:
+`pnpm install` installs the pinned runtime along with the dependencies. To have that happen when the container is created rather than on first use, add it to `devcontainer.json`:
 
 ```json
 "postCreateCommand": "pnpm install"

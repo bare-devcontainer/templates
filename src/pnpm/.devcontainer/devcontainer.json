@@ -18,8 +18,9 @@
   //   "GIT_EDITOR": "code --wait"
   // },
   "mounts": [
-    // Persist the pnpm store, the pnpm-managed runtimes, and globally installed bins across
-    // rebuilds to avoid re-downloading all of them.
+    // Persist the pnpm-managed runtimes, globally installed bins, and the store they are
+    // linked from, so rebuilds don't re-download them. A project's own store is not here:
+    // pnpm keeps that on the workspace's filesystem, in node_modules/.pnpm-store.
     {
       "source": "${devcontainerId}-pnpm-home",
       "target": "/home/dev/.local/share/pnpm",

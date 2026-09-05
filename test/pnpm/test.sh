@@ -9,6 +9,15 @@ test "$PNPM_HOME" = "$HOME/.local/share/pnpm"
 test -w "$PNPM_HOME"
 test -w "$HOME/.cache/pnpm"
 
+# Writability alone is tautological for a mount point, so check that pnpm actually resolves
+# its metadata cache into it: cacheDir follows XDG_CACHE_HOME, so a target that drifted from
+# it would leave this volume silently empty.
+cache_dir="$(pnpm cache path)"
+case "$cache_dir" in
+  "$HOME/.cache/pnpm"|"$HOME/.cache/pnpm"/*) ;;
+  *) echo "pnpm cache resolved outside the persisted volume: $cache_dir" >&2; exit 1 ;;
+esac
+
 # pnpm places its store wherever hard links work, so where it lands depends on the
 # filesystems in play rather than on this template. Record it instead of asserting it.
 echo "pnpm store path: $(pnpm store path)"
