@@ -1,0 +1,35 @@
+{
+  "id": "temurin",
+  "version": "1.0.0",
+  "name": "Java (Temurin)",
+  "description": "Security-focused Java dev container with the Temurin JDK and cached wrapper builds.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/temurin",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Java and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
+      "proposals": [
+        "25-trixie",
+        "25-bookworm",
+        "21-trixie",
+        "21-bookworm"
+      ],
+      "default": "25-trixie"
+    }
+  },
+  "platforms": [
+    "Java"
+  ],
+  "keywords": [
+    "java",
+    "jdk",
+    "temurin",
+    "adoptium",
+    "openjdk",
+    "security",
+    "hardened",
+    "non-root"
+  ]
+}
