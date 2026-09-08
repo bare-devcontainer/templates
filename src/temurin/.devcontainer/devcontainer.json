@@ -39,6 +39,11 @@
         "vscjava.vscode-java-pack"
       ],
       "settings": {
+        // Launches the language server and the Gradle daemon from the JDK the
+        // image ships rather than the JRE the extension bundles. The image
+        // keeps this path the same in every tag and on both architectures,
+        // and devcontainer.json cannot expand ${containerEnv:JAVA_HOME} here.
+        "java.jdt.ls.java.home": "/usr/lib/jvm/temurin",
         "[java]": {
           "editor.defaultFormatter": "redhat.java",
           "editor.formatOnSave": true

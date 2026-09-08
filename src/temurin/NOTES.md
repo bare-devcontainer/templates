@@ -56,8 +56,10 @@ Maven and Gradle keep both their downloaded dependencies and the build tool thei
 
 ## Editor Integration
 
-- Installs the `vscjava.vscode-java-pack` VS Code extension pack (language support, debugger, test runner, Maven, and project manager), with format-on-save enabled for Java files.
-- The language server finds the JDK through `JAVA_HOME`, so no path has to be configured, and it runs on the JRE the extension bundles rather than one it downloads.
+- Installs the `vscjava.vscode-java-pack` VS Code extension pack, which brings [Language Support for Java](https://marketplace.visualstudio.com/items?itemName=redhat.java), the debugger, the test runner, Maven, Gradle, and the project manager. Format-on-save is enabled for Java files.
+- `java.jdt.ls.java.home` is set to `/usr/lib/jvm/temurin`, the JDK the image ships. Without it the extension launches its language server — and the Gradle daemon, which reads the same setting — from the JRE it bundles, so the editor would analyse code on a different JDK than the one that builds it. The setting takes an absolute path and `devcontainer.json` cannot expand `${containerEnv:JAVA_HOME}` outside `remoteEnv`, which is why the base image keeps that path identical in every tag and on both architectures.
+- `java.configuration.runtimes` is deliberately not set: its entries are named after a specific release (`JavaSE-21`, `JavaSE-25`), and the image ships exactly one JDK, which the tooling JDK above already supplies to projects.
+- The remaining extensions need nothing image-specific. `maven.executable.preferMavenWrapper` and `java.import.gradle.wrapper.enabled` both default to using a project's wrapper, which is the only way to build here, and the debugger, test runner and project manager have no JDK path of their own.
 - Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
 - IntelliJ IDEA and other JetBrains IDEs open this `devcontainer.json` directly and supply their own Java support; nothing in the template is specific to VS Code.
 - Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly: the JDK commands at `$JAVA_HOME/bin`.
