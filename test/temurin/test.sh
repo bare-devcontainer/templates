@@ -8,6 +8,11 @@ javac -version
 test -n "$JAVA_HOME"
 test -x "$JAVA_HOME/bin/java"
 
+# devcontainer.json points java.jdt.ls.java.home at this literal path. Nothing
+# else fails when the image stops providing it, so the setting would go stale
+# without breaking a build.
+test -x /usr/lib/jvm/temurin/bin/java
+
 # Compile, package and run a stdlib-only class to prove the JDK works end to end.
 cd "$SMOKE_TMP" || exit 1
 cat > Smoke.java <<'EOF'
