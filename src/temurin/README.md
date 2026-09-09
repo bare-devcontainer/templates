@@ -81,6 +81,7 @@ Maven and Gradle keep both their downloaded dependencies and the build tool thei
 - To download the project's dependencies when the container is created rather than on first build, add the wrapper's offline goal to `devcontainer.json`, for example `"postCreateCommand": "./mvnw -B dependency:go-offline"`.
 - To debug an application running in the container, start it with a JDWP listener (`java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 ...`) and attach the editor to that port; no extra Linux capability is needed.
 
+
 ---
 
 _Note: This file was auto-generated from the [devcontainer-template.json](https://github.com/bare-devcontainer/templates/blob/main/src/temurin/devcontainer-template.json).  Add additional notes to a `NOTES.md`._
