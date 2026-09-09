@@ -1,0 +1,54 @@
+// Created from the "temurin" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/temurin
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
+{
+  "name": "Java (Temurin)",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/temurin:25-trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
+  "image": "ghcr.io/bare-devcontainer/temurin:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "runArgs": ["--cap-drop=ALL"],
+  // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
+  "securityOpt": ["no-new-privileges"],
+  "init": true,
+  // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
+  // "remoteEnv": {
+  //   "VISUAL": "code --wait",
+  //   "EDITOR": "code --wait",
+  //   "GIT_EDITOR": "code --wait"
+  // },
+  "mounts": [
+    // Persist the whole ~/.m2 across rebuilds: the local repository and the Maven
+    // distribution that mvnw downloads into ~/.m2/wrapper/dists both live here.
+    {
+      "source": "${devcontainerId}-temurin-m2",
+      "target": "/home/dev/.m2",
+      "type": "volume"
+    },
+    // Persist the whole ~/.gradle across rebuilds: the dependency cache, the build
+    // cache, and the Gradle distribution that gradlew downloads all live here.
+    {
+      "source": "${devcontainerId}-temurin-gradle",
+      "target": "/home/dev/.gradle",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack"
+      ],
+      "settings": {
+        // Launches the language server and the Gradle daemon from the JDK the
+        // image ships rather than the JRE the extension bundles. The image
+        // keeps this path the same in every tag and on both architectures,
+        // and devcontainer.json cannot expand ${containerEnv:JAVA_HOME} here.
+        "java.jdt.ls.java.home": "/usr/lib/jvm/temurin",
+        "[java]": {
+          "editor.defaultFormatter": "redhat.java",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  }
+}

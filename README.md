@@ -26,6 +26,7 @@ Each template targets a single toolchain and corresponds to one `ghcr.io/bare-de
 | [OpenTofu](src/opentofu) | `ghcr.io/bare-devcontainer/templates/opentofu` | Security-focused OpenTofu dev container with tofu-ls and a plugin cache volume. |
 | [Node.js (pnpm)](src/pnpm) | `ghcr.io/bare-devcontainer/templates/pnpm` | Security-focused pnpm dev container for JS/TS with pnpm-managed Node.js and caches. |
 | [Rust](src/rustup) | `ghcr.io/bare-devcontainer/templates/rustup` | Security-focused Rust dev container with rust-analyzer and persistent Cargo caches. |
+| [Java (Temurin)](src/temurin) | `ghcr.io/bare-devcontainer/templates/temurin` | Security-focused Java dev container with the Temurin JDK and cached wrapper builds. |
 | [Terraform](src/terraform) | `ghcr.io/bare-devcontainer/templates/terraform` | Security-focused Terraform dev container with terraform-ls and a plugin cache volume. |
 | [Python (uv)](src/uv) | `ghcr.io/bare-devcontainer/templates/uv` | Security-focused Python dev container with uv, hardened defaults, and cached packages. |
 | [Zig](src/zig) | `ghcr.io/bare-devcontainer/templates/zig` | Security-focused Zig dev container with zls integration and a persistent build cache. |
