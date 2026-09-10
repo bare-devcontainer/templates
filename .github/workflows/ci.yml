@@ -11,6 +11,12 @@ on:
       - '.github/workflows/ci.yml'
   workflow_dispatch:
 
+# The runner's default shell adds only -e, so an unset variable or a failure
+# mid-pipeline would otherwise pass silently.
+defaults:
+  run:
+    shell: bash -euo pipefail {0}
+
 jobs:
   description-length:
     runs-on: ubuntu-slim
@@ -85,8 +91,6 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          set -euo pipefail
-
           all=$(find src -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
 
           if [[ "${GITHUB_EVENT_NAME}" != "pull_request" ]]; then
@@ -181,7 +185,6 @@ jobs:
       - name: Apply template options
         id: apply
         run: |
-          set -e
           workdir="$(mktemp -d)"
           cp -R "src/${{ matrix.template }}/." "${workdir}"
 
@@ -200,7 +203,6 @@ jobs:
 
       - name: Verify container architecture
         run: |
-          set -eu
           case "${{ matrix.arch }}" in
             amd64) expected="x86_64" ;;
             arm64) expected="aarch64" ;;
@@ -212,7 +214,6 @@ jobs:
 
       - name: Verify container security settings
         run: |
-          set -eu
           cid="$(docker ps -q --filter "label=test-container=${{ matrix.template }}")"
           test -n "${cid}"
           test "$(echo "${cid}" | wc -l)" -eq 1

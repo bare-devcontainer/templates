@@ -9,6 +9,12 @@ on:
       - '.github/workflows/release.yml'
   workflow_dispatch:
 
+# The runner's default shell adds only -e, so an unset variable or a failure
+# mid-pipeline would otherwise pass silently.
+defaults:
+  run:
+    shell: bash -euo pipefail {0}
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -46,8 +52,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          set -e
-
           changed=$(git status --porcelain -- 'src/*/README.md' | awk '{print $2}')
           if [ -z "$changed" ]; then
             echo "No documentation changes."
