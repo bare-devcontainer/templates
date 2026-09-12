@@ -7,7 +7,7 @@ Security-focused Go dev container with hardened defaults and rebuild-friendly ca
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| imageVariant | Go and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | 1.26-trixie |
+| imageVariant | Go and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | 1.27-trixie |
 
 ## Getting Started
 

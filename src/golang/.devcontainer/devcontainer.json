@@ -3,7 +3,7 @@
 // What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
 {
   "name": "Go",
-  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/golang:1.26-trixie@sha256:<digest>").
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/golang:1.27-trixie@sha256:<digest>").
   // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
   "image": "ghcr.io/bare-devcontainer/golang:${templateOption:imageVariant}",
   "remoteUser": "dev",
