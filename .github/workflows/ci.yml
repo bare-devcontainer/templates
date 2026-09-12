@@ -163,6 +163,9 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: read
+    env:
+      # renovate: datasource=npm depName=@devcontainers/cli
+      DEVCONTAINER_CLI_VERSION: "0.89.0"
     strategy:
       fail-fast: false
       matrix:
@@ -179,8 +182,7 @@ jobs:
 
       - name: Install devcontainer CLI
         run: |
-          # renovate: datasource=npm depName=@devcontainers/cli
-          npm install -g @devcontainers/cli@0.87.0
+          npm install -g "@devcontainers/cli@${DEVCONTAINER_CLI_VERSION}"
 
       - name: Apply template options
         id: apply
