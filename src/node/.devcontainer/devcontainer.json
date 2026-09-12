@@ -23,6 +23,12 @@
       "source": "${devcontainerId}-node-corepack-cache",
       "target": "/home/dev/.cache/node/corepack",
       "type": "volume"
+    },
+    // Persist the shell history the image keeps in this directory.
+    {
+      "source": "${devcontainerId}-bash-history",
+      "target": "/home/dev/.local/state/bash",
+      "type": "volume"
     }
   ]
 }

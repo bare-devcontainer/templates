@@ -21,14 +21,17 @@ After applying the template, we recommend pinning the image to a digest so every
 
 ## Persistent Caches
 
-Cargo's registry and git caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading crates:
+Cargo's registry and git caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading crates. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-rustup-cargo-registry` | `/home/dev/.cargo/registry` | Cargo registry cache |
 | `${devcontainerId}-rustup-cargo-git` | `/home/dev/.cargo/git` | Cargo's cache of git-sourced dependencies |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
 
 Only `registry/` and `git/` are mounted; `~/.cargo/bin` is intentionally left in the image layer so the toolchain binaries always come from the image.
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Editor Integration
 

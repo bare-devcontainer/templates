@@ -10,11 +10,19 @@
   "runArgs": ["--cap-drop=ALL"],
   // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
   "securityOpt": ["no-new-privileges"],
-  "init": true
+  "init": true,
   // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
   // "remoteEnv": {
   //   "VISUAL": "code --wait",
   //   "EDITOR": "code --wait",
   //   "GIT_EDITOR": "code --wait"
-  // }
+  // },
+  "mounts": [
+    // Persist the shell history the image keeps in this directory.
+    {
+      "source": "${devcontainerId}-bash-history",
+      "target": "/home/dev/.local/state/bash",
+      "type": "volume"
+    }
+  ]
 }

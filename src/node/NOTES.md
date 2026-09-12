@@ -21,11 +21,14 @@ After applying the template, we recommend pinning the image to a digest so every
 
 ## Persistent Caches
 
-Corepack's cache directory is persisted in a named volume, so rebuilding the container to pick up image updates doesn't require re-downloading package managers:
+Corepack's cache directory is persisted in a named volume, so rebuilding the container to pick up image updates doesn't require re-downloading package managers. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-node-corepack-cache` | `/home/dev/.cache/node/corepack` | Corepack's cache of downloaded `yarn`/`pnpm` releases |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Tips
 
