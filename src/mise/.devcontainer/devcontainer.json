@@ -29,6 +29,12 @@
       "source": "${devcontainerId}-mise-cache",
       "target": "/home/dev/.cache/mise",
       "type": "volume"
+    },
+    // Persist the shell history the image keeps in this directory.
+    {
+      "source": "${devcontainerId}-bash-history",
+      "target": "/home/dev/.local/state/bash",
+      "type": "volume"
     }
   ]
 }
