@@ -32,11 +32,14 @@ After applying the template, we recommend pinning the image to a digest so every
 
 ## Persistent Caches
 
-Deno's cache directory (`DENO_DIR`) is persisted in a named volume, so rebuilding the container to pick up image updates doesn't require re-downloading remote modules or npm packages:
+Deno's cache directory (`DENO_DIR`) is persisted in a named volume, so rebuilding the container to pick up image updates doesn't require re-downloading remote modules or npm packages. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-deno-cache` | `/home/dev/.cache/deno` | Deno's cache (`DENO_DIR`): remote modules and npm packages |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Editor Integration
 

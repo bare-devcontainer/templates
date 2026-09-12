@@ -23,6 +23,12 @@
       "source": "${devcontainerId}-bun-install-cache",
       "target": "/home/dev/.bun/install/cache",
       "type": "volume"
+    },
+    // Persist the shell history the image keeps in this directory.
+    {
+      "source": "${devcontainerId}-bash-history",
+      "target": "/home/dev/.local/state/bash",
+      "type": "volume"
     }
   ],
   "customizations": {

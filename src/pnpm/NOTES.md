@@ -51,16 +51,19 @@ To install the pinned runtime and the dependencies when the container is created
 
 ## Persistent Caches
 
-pnpm's home directory and metadata cache are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading the runtimes and packages pnpm keeps there:
+pnpm's home directory and metadata cache are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading the runtimes and packages pnpm keeps there. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-pnpm-home` | `/home/dev/.local/share/pnpm` | pnpm-managed runtimes, globally installed bins, and the store they are linked from |
 | `${devcontainerId}-pnpm-cache` | `/home/dev/.cache/pnpm` | pnpm's metadata cache |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
 
 Where a package store lands is pnpm's decision rather than this template's, because [there is one store per disk](https://pnpm.io/settings/store#storedir) and hard links only work within a single filesystem. Global installs — the pnpm-managed runtimes and anything added with `pnpm add -g` — live on the volume above, so they are linked from the store at `$PNPM_HOME/store` and persist with it. A project in the workspace is usually on a different filesystem, bind-mounted from the host, so pnpm keeps that project's store beside it in `node_modules/.pnpm-store` and hard-links from there instead. `pnpm store path` reports the one in effect where you run it.
 
 The consequence worth knowing is that deleting a project's `node_modules` deletes that project's store with it, so the next install re-downloads its packages. The runtimes and global bins are unaffected: they stay in the volume.
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Editor Integration
 

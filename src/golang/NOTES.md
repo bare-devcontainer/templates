@@ -21,12 +21,15 @@ After applying the template, we recommend pinning the image to a digest so every
 
 ## Persistent Caches
 
-The Go module and build caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading modules or recompiling packages:
+The Go module and build caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading modules or recompiling packages. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-golang-pkg-mod` | `/home/dev/go/pkg/mod` | Go module cache (`GOMODCACHE`) |
 | `${devcontainerId}-golang-build-cache` | `/home/dev/.cache/go-build` | Go build cache (`GOCACHE`) |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Editor Integration
 

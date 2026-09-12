@@ -31,13 +31,16 @@ uv sync                  # install project dependencies
 
 ## Persistent Caches
 
-uv's cache is persisted in a named volume, so Python interpreters and packages downloaded by uv survive container rebuilds:
+uv's cache is persisted in a named volume, so Python interpreters and packages downloaded by uv survive container rebuilds. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-uv-cache` | `/home/dev/.cache/uv` | uv's cache of downloaded Python interpreters and packages |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
 
 The cache volume and the bind-mounted workspace folder are different filesystems, so uv cannot hardlink packages from the cache into the project's virtual environment. The template sets `UV_LINK_MODE=copy` in `containerEnv` so uv copies them instead of warning `Failed to hardlink files; falling back to full copy` on every install.
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Editor Integration
 

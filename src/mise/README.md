@@ -43,12 +43,15 @@ The installed runtimes are stored in the persisted data volume, so they remain a
 
 ## Persistent Caches
 
-mise's data directory and download cache are persisted in named volumes, so toolchains installed with mise survive container rebuilds and don't need to be re-downloaded:
+mise's data directory and download cache are persisted in named volumes, so toolchains installed with mise survive container rebuilds and don't need to be re-downloaded. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-mise-data` | `/home/dev/.local/share/mise` | mise-managed toolchains |
 | `${devcontainerId}-mise-cache` | `/home/dev/.cache/mise` | mise's download cache |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Tips
 

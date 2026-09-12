@@ -69,6 +69,11 @@ Applying a template writes a `.devcontainer/devcontainer.json` into your project
       "source": "${devcontainerId}-uv-cache",
       "target": "/home/dev/.cache/uv",
       "type": "volume"
+    },
+    {
+      "source": "${devcontainerId}-bash-history",
+      "target": "/home/dev/.local/state/bash",
+      "type": "volume"
     }
   ],
   "customizations": {
@@ -83,7 +88,7 @@ Each part maps to one of the goals above:
 
 - `image` references a base image from [Bare Dev Container Images], a separate repository that builds minimal images with pinned digests, SLSA provenance, and an SPDX SBOM. This repository ships configuration only; what is installed inside the container is documented there.
 - `remoteUser`, `runArgs`, `securityOpt`, and `init` are the shared hardening defaults, applied identically by every template.
-- `mounts` persists the toolchain's cache directories in named volumes, so rebuilding to pick up an image update doesn't re-download dependencies.
+- `mounts` persists the toolchain's cache directories in named volumes, so rebuilding to pick up an image update doesn't re-download dependencies. A further volume holds the bash history the image writes, so a rebuild doesn't clear it.
 - `customizations` pairs the toolchain with the relevant extensions and settings, so the editor is ready to use on first open.
 
 The generated file is yours to edit — it is a plain dev container configuration, so you can layer [Features](https://containers.dev/features), add mounts, or relax any of the defaults.

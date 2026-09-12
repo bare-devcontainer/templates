@@ -1,6 +1,6 @@
 {
   "id": "temurin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Java (Temurin)",
   "description": "Security-focused Java dev container with the Temurin JDK and cached wrapper builds.",
   "publisher": "Bare Dev Container Maintainers",

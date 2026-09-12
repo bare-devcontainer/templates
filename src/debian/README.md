@@ -38,6 +38,16 @@ This template is a minimal Debian base for any development stack — no language
 - extend the image with your own `Dockerfile`, or
 - switch to a stack-specific Bare Dev Container template (Go, Rust, Node.js, ...).
 
+## Persistent Caches
+
+Bash history is persisted in a named volume, so rebuilding the container to pick up image updates doesn't clear it:
+
+| Volume | Mount path | Purpose |
+|--------|------------|---------|
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
+
 ## Tips
 
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.

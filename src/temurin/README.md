@@ -58,12 +58,15 @@ One feature release is installed per image tag, so a project that needs a differ
 
 ## Persistent Caches
 
-Maven and Gradle keep both their downloaded dependencies and the build tool their wrapper installed under the home directory, so each is persisted whole in a named volume:
+Maven and Gradle keep both their downloaded dependencies and the build tool their wrapper installed under the home directory, so each is persisted whole in a named volume. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-temurin-m2` | `/home/dev/.m2` | Maven local repository and the distribution `mvnw` downloads |
 | `${devcontainerId}-temurin-gradle` | `/home/dev/.gradle` | Gradle dependency and build caches, and the distribution `gradlew` downloads |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume. It also appends each command as it is entered, so stopping the container to rebuild it keeps the history of open terminals too.
 
 ## Editor Integration
 
