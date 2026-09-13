@@ -7,7 +7,7 @@ Security-focused mise dev container for multiple runtimes, with cached tool inst
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| imageVariant | Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | trixie |
+| imageVariant | Debian version (trixie = Debian 13). Other published tags can be entered. | string | trixie |
 
 ## Getting Started
 
@@ -15,7 +15,7 @@ See [Getting Started](https://github.com/bare-devcontainer/templates#getting-sta
 
 ## Image Variants
 
-The `imageVariant` option selects the tag of the `ghcr.io/bare-devcontainer/mise` base image, which tracks the Debian release: `trixie` is Debian 13 and `bookworm` is Debian 12.
+The `imageVariant` option selects the tag of the `ghcr.io/bare-devcontainer/mise` base image, which tracks the Debian release: `trixie` is Debian 13.
 
 The values offered when applying the template are proposals, not a closed list — any published tag can be entered, including narrower ones such as a mise version or a dated build for tighter pinning. See the [published tags](https://github.com/orgs/bare-devcontainer/packages/container/package/mise) for what is currently available.
 
