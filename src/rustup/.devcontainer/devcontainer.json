@@ -32,6 +32,12 @@
       "source": "${devcontainerId}-rustup-cargo-git",
       "target": "/home/dev/.cargo/git",
       "type": "volume"
+    },
+    // Persist the shell history the image keeps in this directory.
+    {
+      "source": "${devcontainerId}-bash-history",
+      "target": "/home/dev/.local/state/bash",
+      "type": "volume"
     }
   ],
   "customizations": {

@@ -1,6 +1,6 @@
 {
   "id": "zig",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "name": "Zig",
   "description": "Security-focused Zig dev container with zls integration and a persistent build cache.",
   "publisher": "Bare Dev Container Maintainers",

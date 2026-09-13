@@ -1,6 +1,6 @@
 {
   "id": "bun",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "name": "Bun",
   "description": "Security-focused Bun dev container for JS/TS with hardened defaults and cached installs.",
   "publisher": "Bare Dev Container Maintainers",

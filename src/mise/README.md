@@ -7,7 +7,7 @@ Security-focused mise dev container for multiple runtimes, with cached tool inst
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| imageVariant | Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | trixie |
+| imageVariant | Debian version (trixie = Debian 13). Other published tags can be entered. | string | trixie |
 
 ## Getting Started
 
@@ -15,7 +15,7 @@ See [Getting Started](https://github.com/bare-devcontainer/templates#getting-sta
 
 ## Image Variants
 
-The `imageVariant` option selects the tag of the `ghcr.io/bare-devcontainer/mise` base image, which tracks the Debian release: `trixie` is Debian 13 and `bookworm` is Debian 12.
+The `imageVariant` option selects the tag of the `ghcr.io/bare-devcontainer/mise` base image, which tracks the Debian release: `trixie` is Debian 13.
 
 The values offered when applying the template are proposals, not a closed list — any published tag can be entered, including narrower ones such as a mise version or a dated build for tighter pinning. See the [published tags](https://github.com/orgs/bare-devcontainer/packages/container/package/mise) for what is currently available.
 
@@ -43,12 +43,15 @@ The installed runtimes are stored in the persisted data volume, so they remain a
 
 ## Persistent Caches
 
-mise's data directory and download cache are persisted in named volumes, so toolchains installed with mise survive container rebuilds and don't need to be re-downloaded:
+mise's data directory and download cache are persisted in named volumes, so toolchains installed with mise survive container rebuilds and don't need to be re-downloaded. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
 | `${devcontainerId}-mise-data` | `/home/dev/.local/share/mise` | mise-managed toolchains |
 | `${devcontainerId}-mise-cache` | `/home/dev/.cache/mise` | mise's download cache |
+| `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
+
+The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume.
 
 ## Tips
 
