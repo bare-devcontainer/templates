@@ -1,6 +1,7 @@
 name: CI
 
 permissions: {}
+cache-mode: none
 
 on:
   pull_request:
