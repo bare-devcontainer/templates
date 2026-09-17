@@ -1,6 +1,7 @@
 name: Release
 
 permissions: {}
+cache-mode: none
 
 on:
   pull_request:
