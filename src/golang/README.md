@@ -53,6 +53,7 @@ The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than t
 
 - To use the debugger (delve), uncomment `"capAdd": ["SYS_PTRACE"]` in `devcontainer.json`.
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
+- To add a directory to `PATH` through `remoteEnv`, keep `/home/dev/go/bin` in the value, as in `"PATH": "/home/dev/go/bin:<your-dir>:${containerEnv:PATH}"`. The image puts `/home/dev/go/bin` on `PATH` through a `remoteEnv` entry of its own, which a `PATH` set in `devcontainer.json` replaces rather than extends.
 
 
 ---

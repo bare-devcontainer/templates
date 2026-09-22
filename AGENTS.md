@@ -38,7 +38,7 @@ The `name` in `.devcontainer/devcontainer.json` must match the template `name`, 
 
 `keywords` are search terms, so list what a user would type to find the template: the toolchain and its aliases, the languages it serves, the tooling the template configures (`terraform-ls`, `ruff`, `corepack`), and the shared `security`, `hardened`, `non-root` that every template ends with. Only list tooling the template actually ships or configures.
 
-Bump the template `version` when a change under `src/<template>/` is published, metadata-only edits included; GHCR publishes per version, so an unchanged version is not republished. One bump per pull request covers every change it carries.
+Bump the template `version` when a change under `src/<template>/` is published, metadata-only edits included; GHCR publishes per version, so an unchanged version is not republished. A change confined to `NOTES.md` and `README.md` needs no bump: applying a template leaves both files out, and readers reach them on GitHub through `documentationURL`. One bump per pull request covers every change it carries.
 
 ## Template Documentation
 

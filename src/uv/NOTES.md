@@ -38,7 +38,7 @@ uv's cache is persisted in a named volume, so Python interpreters and packages d
 | `${devcontainerId}-uv-cache` | `/home/dev/.cache/uv` | uv's cache of downloaded Python interpreters and packages |
 | `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
 
-The cache volume and the bind-mounted workspace folder are different filesystems, so uv cannot hardlink packages from the cache into the project's virtual environment. The template sets `UV_LINK_MODE=copy` in `containerEnv` so uv copies them instead of warning `Failed to hardlink files; falling back to full copy` on every install.
+The cache volume and the bind-mounted workspace folder are different filesystems, so uv cannot hardlink packages from the cache into the project's virtual environment. The image sets `UV_LINK_MODE=copy` so uv copies them instead of warning `Failed to hardlink files; falling back to full copy` on every install.
 
 The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume.
 
@@ -51,4 +51,5 @@ The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than t
 ## Tips
 
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
-- The `UV_LINK_MODE=copy` default above costs some time and disk space on every install. To get hardlinking back, keep uv's cache and the project environment on the same volume: mount `${devcontainerId}-uv` at `/home/dev/.uv`, and replace `UV_LINK_MODE` in `containerEnv` with `"UV_CACHE_DIR": "/home/dev/.uv/cache"` and `"UV_PROJECT_ENVIRONMENT": "/home/dev/.uv/venv"`. The environment then lives outside the workspace folder, so point your editor at `/home/dev/.uv/venv/bin/python` (`python.defaultInterpreterPath` in VS Code).
+- To add a directory to `PATH` through `remoteEnv`, keep `/home/dev/.local/bin` in the value, as in `"PATH": "/home/dev/.local/bin:<your-dir>:${containerEnv:PATH}"`. The image puts `/home/dev/.local/bin` on `PATH` through a `remoteEnv` entry of its own, which a `PATH` set in `devcontainer.json` replaces rather than extends.
+- The `UV_LINK_MODE=copy` default above costs some time and disk space on every install. To get hardlinking back, keep uv's cache and the project environment on the same volume: mount `${devcontainerId}-uv` at `/home/dev/.uv`, and add `"UV_LINK_MODE": "hardlink"`, `"UV_CACHE_DIR": "/home/dev/.uv/cache"` and `"UV_PROJECT_ENVIRONMENT": "/home/dev/.uv/venv"` to `remoteEnv`. Keep these out of `containerEnv`: the paths are writable by `dev`, and `containerEnv` would apply them to every user in the container rather than only to the processes the Dev Container client starts. The environment then lives outside the workspace folder, so point your editor at `/home/dev/.uv/venv/bin/python` (`python.defaultInterpreterPath` in VS Code).
