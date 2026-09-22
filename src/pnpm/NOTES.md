@@ -75,3 +75,4 @@ The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than t
 
 - `npm` is not shipped in the image, and installing a Node.js runtime with pnpm deliberately leaves the bundled `npm` unextracted. Run `pnpm add -g npm` if a project needs it; it lands in the persisted pnpm home.
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
+- To add a directory to `PATH` through `remoteEnv`, keep `/home/dev/.local/share/pnpm/bin` in the value, as in `"PATH": "/home/dev/.local/share/pnpm/bin:<your-dir>:${containerEnv:PATH}"`. The image puts `/home/dev/.local/share/pnpm/bin` on `PATH` through a `remoteEnv` entry of its own, which a `PATH` set in `devcontainer.json` replaces rather than extends.

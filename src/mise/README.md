@@ -56,6 +56,7 @@ The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than t
 ## Tips
 
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
+- To add a directory to `PATH` through `remoteEnv`, keep `/home/dev/.local/share/mise/shims` in the value, as in `"PATH": "/home/dev/.local/share/mise/shims:<your-dir>:${containerEnv:PATH}"`. The image puts `/home/dev/.local/share/mise/shims` on `PATH` through a `remoteEnv` entry of its own, which a `PATH` set in `devcontainer.json` replaces rather than extends.
 
 
 ---
