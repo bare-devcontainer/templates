@@ -48,14 +48,12 @@ The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than t
 ## Editor Integration
 
 - Installs the `rust-lang.rust-analyzer` VS Code extension, with format-on-save enabled for Rust files.
-- Installs `tamasfe.even-better-toml` for completion and validation in `Cargo.toml` and `rust-toolchain.toml`.
-- Installs `vadimcn.vscode-lldb` (CodeLLDB) for debugging; it bundles its own LLDB, so the image needs no debugger. Debugging also needs `SYS_PTRACE`, see [Tips](#tips).
 - Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
 - Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. The image ships no toolchain, so add the language server to it first, by listing `rust-analyzer` in the `components` of `rust-toolchain.toml` or with `rustup component add rust-analyzer`; it then resolves through `/home/dev/.cargo/bin`, which is on `PATH`.
 
 ## Tips
 
-- To use the debugger, uncomment `"capAdd": ["SYS_PTRACE"]` in `devcontainer.json`.
+- To use the debugger, uncomment `"capAdd": ["SYS_PTRACE"]` in `devcontainer.json` and add a debugger extension such as `vadimcn.vscode-lldb` (CodeLLDB); the image ships no debugger.
 - To start over with fresh toolchains, remove the `<id>-rustup-home` volume (`docker volume ls` lists it) while the container is stopped, then rebuild.
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
 - To add a directory to `PATH` through `remoteEnv`, keep `/home/dev/.cargo/bin` in the value, as in `"PATH": "/home/dev/.cargo/bin:<your-dir>:${containerEnv:PATH}"`. The image puts `/home/dev/.cargo/bin` on `PATH` through a `remoteEnv` entry of its own, which a `PATH` set in `devcontainer.json` replaces rather than extends.

@@ -25,7 +25,6 @@
     "rustup",
     "cargo",
     "rust-analyzer",
-    "codelldb",
     "security",
     "hardened",
     "non-root"
