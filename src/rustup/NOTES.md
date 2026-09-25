@@ -21,27 +21,22 @@ After applying the template, we recommend pinning the image to a digest so every
 
 ## Usage Notes
 
-The image ships `rustup` without a Rust toolchain, so the toolchain in use is the one the project declares. Pin it in `rust-toolchain.toml`, and the first `cargo` or `rustc` invocation installs it. Without one, choose a toolchain yourself, for example with `rustup default stable`.
+The image ships no Rust toolchain. A toolchain pinned in `rust-toolchain.toml` is installed on the first `cargo` or `rustc` run; otherwise, install one with `rustup default stable`.
 
 ## Persistent Caches
 
-Installed toolchains and Cargo's registry and git caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading toolchains or crates. Bash history is persisted the same way, so a rebuild doesn't clear it:
+Installed toolchains and Cargo's download caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading them. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
-| `${devcontainerId}-rustup-home` | `/home/dev/.rustup` | Installed toolchains and rustup settings |
+| `${devcontainerId}-rustup-home` | `/home/dev/.rustup` | Installed toolchains |
 | `${devcontainerId}-rustup-cargo-registry` | `/home/dev/.cargo/registry` | Cargo registry cache |
 | `${devcontainerId}-rustup-cargo-git` | `/home/dev/.cargo/git` | Cargo's cache of git-sourced dependencies |
 | `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
 
-Because the toolchains live in a volume, a rebuild keeps them as they are:
+A rebuild keeps the toolchains as they are, so it neither updates them (run `rustup update`) nor discards changes made to them from inside the container, for example by a build script. To download them afresh on every rebuild, remove the `/home/dev/.rustup` mount.
 
-- A rebuild does not reset the toolchains. Anything that runs in the container as `dev`, such as a build script or a procedural macro, can modify them, and a modification persists until the volume is removed. Remove the `/home/dev/.rustup` mount from `devcontainer.json` to have every rebuild download them afresh.
-- A rebuild does not update channels such as `stable`; run `rustup update` to update them.
-- Toolchains no longer in use stay in the volume until removed with `rustup toolchain uninstall <toolchain>`.
-- Rustup settings, such as the default toolchain, are kept in the volume too, so changes the image makes to `~/.rustup` do not reach an existing volume.
-
-`~/.cargo/bin` stays in the image layer, which holds `rustup` and its `cargo`/`rustc` proxies, so a rebuild picks up the `rustup` of the new image; binaries installed there with `cargo install` do not survive a rebuild.
+`~/.cargo/bin` is not persisted, so binaries installed with `cargo install` do not survive a rebuild.
 
 The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume.
 
@@ -49,11 +44,10 @@ The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than t
 
 - Installs the `rust-lang.rust-analyzer` VS Code extension, with format-on-save enabled for Rust files.
 - Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
-- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. The image ships no toolchain, so add the language server to it first, by listing `rust-analyzer` in the `components` of `rust-toolchain.toml` or with `rustup component add rust-analyzer`; it then resolves through `/home/dev/.cargo/bin`, which is on `PATH`.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. The image ships only `rustup`, so add the language server to the toolchain first with `rustup component add rust-analyzer`; it then resolves through `/home/dev/.cargo/bin`, which is on `PATH`.
 
 ## Tips
 
-- To use the debugger, uncomment `"capAdd": ["SYS_PTRACE"]` in `devcontainer.json` and add a debugger extension such as `vadimcn.vscode-lldb` (CodeLLDB); the image ships no debugger.
-- To start over with fresh toolchains, remove the `<id>-rustup-home` volume (`docker volume ls` lists it) while the container is stopped, then rebuild.
+- To use the debugger, uncomment `"capAdd": ["SYS_PTRACE"]` in `devcontainer.json`.
 - If you use VS Code, uncomment the `remoteEnv` block in `devcontainer.json` to open `$EDITOR`/`$VISUAL`/`$GIT_EDITOR` (e.g. `git commit`) in a VS Code tab.
 - To add a directory to `PATH` through `remoteEnv`, keep `/home/dev/.cargo/bin` in the value, as in `"PATH": "/home/dev/.cargo/bin:<your-dir>:${containerEnv:PATH}"`. The image puts `/home/dev/.cargo/bin` on `PATH` through a `remoteEnv` entry of its own, which a `PATH` set in `devcontainer.json` replaces rather than extends.
