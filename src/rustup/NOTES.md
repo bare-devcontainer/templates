@@ -29,7 +29,7 @@ Cargo's registry and git caches are persisted in named volumes, so rebuilding th
 | `${devcontainerId}-rustup-cargo-git` | `/home/dev/.cargo/git` | Cargo's cache of git-sourced dependencies |
 | `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
 
-Only `registry/` and `git/` are mounted; `~/.cargo/bin` is intentionally left in the image layer so the toolchain binaries always come from the image.
+Only `registry/` and `git/` are mounted. `~/.cargo/bin` stays in the image layer, which holds `rustup` and its `cargo`/`rustc` proxies, so a rebuild picks up the `rustup` of the new image; binaries installed there with `cargo install` do not survive a rebuild. Toolchains live in `~/.rustup`, which is not persisted either, so they are installed again after a rebuild.
 
 The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume.
 
