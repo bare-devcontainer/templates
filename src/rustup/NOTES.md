@@ -19,17 +19,24 @@ This template applies the shared hardening defaults of Bare Dev Container Templa
 
 After applying the template, we recommend pinning the image to a digest so every rebuild uses exactly the image you expect — see [Pinning Images to a Digest](https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest).
 
+## Usage Notes
+
+The image ships no Rust toolchain. A toolchain pinned in `rust-toolchain.toml` is installed on the first `cargo` or `rustc` run; otherwise, install one with `rustup default stable`.
+
 ## Persistent Caches
 
-Cargo's registry and git caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading crates. Bash history is persisted the same way, so a rebuild doesn't clear it:
+Installed toolchains and Cargo's download caches are persisted in named volumes, so rebuilding the container to pick up image updates doesn't require re-downloading them. Bash history is persisted the same way, so a rebuild doesn't clear it:
 
 | Volume | Mount path | Purpose |
 |--------|------------|---------|
+| `${devcontainerId}-rustup-home` | `/home/dev/.rustup` | Installed toolchains |
 | `${devcontainerId}-rustup-cargo-registry` | `/home/dev/.cargo/registry` | Cargo registry cache |
 | `${devcontainerId}-rustup-cargo-git` | `/home/dev/.cargo/git` | Cargo's cache of git-sourced dependencies |
 | `${devcontainerId}-bash-history` | `/home/dev/.local/state/bash` | Bash history file that `HISTFILE` points at |
 
-Only `registry/` and `git/` are mounted. `~/.cargo/bin` stays in the image layer, which holds `rustup` and its `cargo`/`rustc` proxies, so a rebuild picks up the `rustup` of the new image; binaries installed there with `cargo install` do not survive a rebuild. Toolchains live in `~/.rustup`, which is not persisted either, so they are installed again after a rebuild.
+A rebuild keeps the toolchains as they are, so it neither updates them (run `rustup update`) nor discards changes made to them from inside the container, for example by a build script. To download them afresh on every rebuild, remove the `/home/dev/.rustup` mount.
+
+`~/.cargo/bin` is not persisted, so binaries installed with `cargo install` do not survive a rebuild.
 
 The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than the default `~/.bash_history`, so bash writes into the volume.
 

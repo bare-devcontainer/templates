@@ -20,6 +20,12 @@
   //   "GIT_EDITOR": "code --wait"
   // },
   "mounts": [
+    // Persist installed toolchains across rebuilds to avoid re-downloading them. A rebuild does not reset them.
+    {
+      "source": "${devcontainerId}-rustup-home",
+      "target": "/home/dev/.rustup",
+      "type": "volume"
+    },
     // Persist the Cargo registry cache across rebuilds to avoid re-downloading crates.
     // Only registry/ and git/ are mounted; ~/.cargo/bin is intentionally left in the image layer.
     {

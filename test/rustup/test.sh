@@ -5,6 +5,10 @@
 rustup --version
 rustup toolchain list
 
+# The template mounts a volume at ~/.rustup, which needs the directory to exist in
+# the image so it belongs to "dev" rather than root.
+test -w "$HOME/.rustup"
+
 # Install a minimal stable toolchain to prove the manager works end to end,
 # then compile and run a program without touching the cargo registry.
 rustup toolchain install stable --profile minimal
