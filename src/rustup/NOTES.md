@@ -21,13 +21,7 @@ After applying the template, we recommend pinning the image to a digest so every
 
 ## Usage Notes
 
-The image ships `rustup` without a Rust toolchain, and `postCreateCommand` installs one when the container is created:
-
-- If the project pins a toolchain in `rust-toolchain.toml`, that toolchain is installed, with the profile and components the file names.
-- Otherwise, stable is installed with the `minimal` profile plus `clippy`, `rustfmt`, and `rust-analyzer`, and set as the default. The `minimal` profile leaves out the offline documentation (`rust-docs`), which is most of the size of the `default` profile.
-- Either way, `rust-src` is added, which rust-analyzer needs to resolve the standard library.
-
-`postCreateCommand` passes `--no-self-update`, so the `rustup` binary stays the one the image verified at build time. `rustup update` updates `rustup` itself as well; run `rustup update --no-self-update` instead to update toolchains only.
+The image ships `rustup` without a Rust toolchain, so the toolchain in use is the one the project declares. Pin it in `rust-toolchain.toml`, and the first `cargo` or `rustc` invocation installs it. Without one, choose a toolchain yourself, for example with `rustup default stable`.
 
 ## Persistent Caches
 
@@ -43,7 +37,7 @@ Installed toolchains and Cargo's registry and git caches are persisted in named 
 Because the toolchains live in a volume, a rebuild keeps them as they are:
 
 - A rebuild does not reset the toolchains. Anything that runs in the container as `dev`, such as a build script or a procedural macro, can modify them, and a modification persists until the volume is removed. Remove the `/home/dev/.rustup` mount from `devcontainer.json` to have every rebuild download them afresh.
-- A rebuild re-runs `postCreateCommand`, which updates only the toolchain the project pins or the default. Run `rustup update --no-self-update` to update the others.
+- A rebuild does not update channels such as `stable`; run `rustup update` to update them.
 - Toolchains no longer in use stay in the volume until removed with `rustup toolchain uninstall <toolchain>`.
 - Rustup settings, such as the default toolchain, are kept in the volume too, so changes the image makes to `~/.rustup` do not reach an existing volume.
 
@@ -57,7 +51,7 @@ The image sets `HISTFILE` to `/home/dev/.local/state/bash/history` rather than t
 - Installs `tamasfe.even-better-toml` for completion and validation in `Cargo.toml` and `rust-toolchain.toml`.
 - Installs `vadimcn.vscode-lldb` (CodeLLDB) for debugging; it bundles its own LLDB, so the image needs no debugger. Debugging also needs `SYS_PTRACE`, see [Tips](#tips).
 - Forks of VS Code (Cursor, Windsurf, VSCodium, code-server) read the same `customizations.vscode` block, but resolve extension IDs against [Open VSX](https://open-vsx.org/) rather than the Visual Studio Marketplace, where availability depends on the publisher having opted in.
-- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. The `rust-analyzer` component that `postCreateCommand` installs with stable resolves through `/home/dev/.cargo/bin`, which is on `PATH`; for a toolchain pinned in `rust-toolchain.toml`, list `rust-analyzer` in its `components` or add it with `rustup component add rust-analyzer`.
+- Editors without dev container integration (Neovim, Helix, Emacs, ...) can attach to the running container with `devcontainer exec --workspace-folder . <command>` and use the tooling in the image directly. The image ships no toolchain, so add the language server to it first, by listing `rust-analyzer` in the `components` of `rust-toolchain.toml` or with `rustup component add rust-analyzer`; it then resolves through `/home/dev/.cargo/bin`, which is on `PATH`.
 
 ## Tips
 

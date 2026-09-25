@@ -25,8 +25,6 @@
     "rustup",
     "cargo",
     "rust-analyzer",
-    "clippy",
-    "rustfmt",
     "codelldb",
     "security",
     "hardened",
