@@ -1,8 +1,8 @@
 {
   "id": "rustup",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "name": "Rust",
-  "description": "Security-focused Rust dev container with rust-analyzer and persistent Cargo caches.",
+  "description": "Security-focused Rust dev container with rust-analyzer, persisted toolchains and caches.",
   "publisher": "Bare Dev Container Maintainers",
   "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/rustup",
   "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
@@ -24,6 +24,10 @@
     "rust",
     "rustup",
     "cargo",
+    "rust-analyzer",
+    "clippy",
+    "rustfmt",
+    "codelldb",
     "security",
     "hardened",
     "non-root"

@@ -13,6 +13,10 @@
   // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
   "securityOpt": ["no-new-privileges"],
   "init": true,
+  // Installs the toolchain the project pins in rust-toolchain.toml, or a minimal stable toolchain
+  // as the default when none is pinned, and the rust-src component rust-analyzer needs for std.
+  // --no-self-update keeps the rustup the image verified at build time.
+  "postCreateCommand": "if rustup show active-toolchain >/dev/null 2>&1; then rustup toolchain install --no-self-update && rustup component add rust-src; else rustup toolchain install stable --profile minimal --component clippy,rustfmt,rust-analyzer,rust-src --no-self-update && rustup default stable; fi",
   // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
   // "remoteEnv": {
   //   "VISUAL": "code --wait",
@@ -20,8 +24,15 @@
   //   "GIT_EDITOR": "code --wait"
   // },
   "mounts": [
+    // Persist installed toolchains across rebuilds to avoid re-downloading them.
+    // Toolchains here are not reset by a rebuild; remove this mount to get a fresh download each time.
+    {
+      "source": "${devcontainerId}-rustup-home",
+      "target": "/home/dev/.rustup",
+      "type": "volume"
+    },
     // Persist the Cargo registry cache across rebuilds to avoid re-downloading crates.
-    // Only registry/ and git/ are mounted; ~/.cargo/bin is intentionally left in the image layer.
+    // ~/.cargo/bin is intentionally left in the image layer, so rustup comes from the image.
     {
       "source": "${devcontainerId}-rustup-cargo-registry",
       "target": "/home/dev/.cargo/registry",
@@ -43,7 +54,9 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "rust-lang.rust-analyzer"
+        "rust-lang.rust-analyzer",
+        "tamasfe.even-better-toml",
+        "vadimcn.vscode-lldb"
       ],
       "settings": {
         "[rust]": {
