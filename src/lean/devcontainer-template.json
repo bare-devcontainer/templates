@@ -1,0 +1,33 @@
+{
+  "id": "lean",
+  "version": "1.0.0",
+  "name": "Lean 4",
+  "description": "Security-focused Lean 4 dev container with elan, persisted toolchains and Mathlib cache.",
+  "publisher": "Bare Dev Container Maintainers",
+  "documentationURL": "https://github.com/bare-devcontainer/templates/tree/main/src/lean",
+  "licenseURL": "https://github.com/bare-devcontainer/templates/blob/main/LICENSE",
+  "options": {
+    "imageVariant": {
+      "type": "string",
+      "description": "Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered.",
+      "proposals": [
+        "trixie",
+        "bookworm"
+      ],
+      "default": "trixie"
+    }
+  },
+  "platforms": [
+    "Lean"
+  ],
+  "keywords": [
+    "lean",
+    "lean4",
+    "elan",
+    "lake",
+    "mathlib",
+    "security",
+    "hardened",
+    "non-root"
+  ]
+}

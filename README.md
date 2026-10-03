@@ -21,6 +21,7 @@ Each template targets a single toolchain and corresponds to one `ghcr.io/bare-de
 | [Debian](src/debian) | `ghcr.io/bare-devcontainer/templates/debian` | Security-focused minimal Debian base for any stack, with hardened, non-root defaults. |
 | [Deno](src/deno) | `ghcr.io/bare-devcontainer/templates/deno` | Security-focused Deno dev container for JS/TS with hardened defaults and cached modules. |
 | [Go](src/golang) | `ghcr.io/bare-devcontainer/templates/golang` | Security-focused Go dev container with hardened defaults and rebuild-friendly caches. |
+| [Lean 4](src/lean) | `ghcr.io/bare-devcontainer/templates/lean` | Security-focused Lean 4 dev container with elan, persisted toolchains and Mathlib cache. |
 | [mise](src/mise) | `ghcr.io/bare-devcontainer/templates/mise` | Security-focused mise dev container for multiple runtimes, with cached tool installs. |
 | [Node.js](src/node) | `ghcr.io/bare-devcontainer/templates/node` | Security-focused Node.js dev container for JS/TS with non-root defaults and Corepack. |
 | [OpenTofu](src/opentofu) | `ghcr.io/bare-devcontainer/templates/opentofu` | Security-focused OpenTofu dev container with tofu-ls and a plugin cache volume. |

@@ -1,0 +1,50 @@
+// Created from the "lean" template of Bare Dev Container Templates.
+// Usage, options, security defaults, and tips: https://github.com/bare-devcontainer/templates/tree/main/src/lean
+// What is installed in the image, and available tags: https://github.com/bare-devcontainer/images
+{
+  "name": "Lean 4",
+  // Recommended: pin to a digest (e.g. "ghcr.io/bare-devcontainer/lean:trixie@sha256:<digest>").
+  // See https://github.com/bare-devcontainer/templates#pinning-images-to-a-digest
+  "image": "ghcr.io/bare-devcontainer/lean:${templateOption:imageVariant}",
+  "remoteUser": "dev",
+  "runArgs": ["--cap-drop=ALL"],
+  // Uncomment the following options to enable the debugger.
+  // "capAdd": ["SYS_PTRACE"],
+  // Remove "no-new-privileges" if users need to gain elevated privileges inside the container (e.g., su, sudo).
+  "securityOpt": ["no-new-privileges"],
+  "init": true,
+  // If you use VS Code, uncomment the following to open $EDITOR/$VISUAL/$GIT_EDITOR (e.g. `git commit`) in a VS Code tab:
+  // "remoteEnv": {
+  //   "VISUAL": "code --wait",
+  //   "EDITOR": "code --wait",
+  //   "GIT_EDITOR": "code --wait"
+  // },
+  "mounts": [
+    // Persist installed toolchains across rebuilds to avoid re-downloading them. A rebuild does not reset them.
+    // Only toolchains/ is mounted; ~/.elan/bin, which holds elan itself, is intentionally left in the image layer.
+    {
+      "source": "${devcontainerId}-lean-elan-toolchains",
+      "target": "/home/dev/.elan/toolchains",
+      "type": "volume"
+    },
+    // Persist the prebuilt Mathlib files `lake exe cache get` downloads across rebuilds.
+    {
+      "source": "${devcontainerId}-lean-mathlib-cache",
+      "target": "/home/dev/.cache/mathlib",
+      "type": "volume"
+    },
+    // Persist the shell history the image keeps in this directory.
+    {
+      "source": "${devcontainerId}-bash-history",
+      "target": "/home/dev/.local/state/bash",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "leanprover.lean4"
+      ]
+    }
+  }
+}
