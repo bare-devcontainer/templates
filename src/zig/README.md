@@ -7,7 +7,7 @@ Security-focused Zig dev container with zls integration and a persistent build c
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| imageVariant | Zig and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | 0.16-trixie |
+| imageVariant | Zig and Debian version (trixie = Debian 13, bookworm = Debian 12). Other published tags can be entered. | string | 0.17-trixie |
 
 ## Getting Started
 
