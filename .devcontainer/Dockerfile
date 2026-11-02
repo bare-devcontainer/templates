@@ -1,4 +1,4 @@
-FROM ghcr.io/bare-devcontainer/debian:trixie@sha256:b2800b06ff61cc450f4a6fff97ccb412d70bcd75d6c452f93998d6ed8f05f412
+FROM ghcr.io/bare-devcontainer/debian:trixie@sha256:796f9fbbd9e74f9601b0ae793caff5bb6ef59d1ac1d35a1d0280078dd60f101c
 
 USER root
 
